@@ -2,7 +2,7 @@ package Practice.Algorithm;
 
 public class PrimeNumber {
 
-    public static boolean isPrimmeNumber(int number){
+    public static boolean isPrimeNumber(int number){
         int count =0;
         if(number != 1){
               for (int i = 2 ; i<= number;i++){
@@ -16,6 +16,6 @@ public class PrimeNumber {
     }
 
     public static void main(String[] args) {
-        System.out.println(isPrimmeNumber( 9 ));
+        System.out.println(isPrimeNumber( 9 ));
     }
 }
