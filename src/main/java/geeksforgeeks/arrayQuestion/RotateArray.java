@@ -47,10 +47,21 @@ public class RotateArray {
 			arr = leftRotateOneByOne(arr);
 		return arr;
 	}
+	
+	public static int[] rotateUsingTraveralAlog(int[] arr , int indexOfRotation) {
+		arr = MathUtil.rvereseArray(arr, 0, indexOfRotation);
+		arr = MathUtil.rvereseArray(arr, indexOfRotation+1, arr.length-1);
+		return MathUtil.rvereseArray(arr,0,arr.length-1);
+	}
+	
+	
 	public static void main(String[] args) {
 		int arr[] = {1, 2, 3, 4, 5, 6, 7};
-		MathUtil.printArray(rotate(arr, 2, 7));
+	//	MathUtil.printArray(rotate(arr, 2, 7));
 		
-		MathUtil.printArray(leftRotate(arr, 2));
+		//MathUtil.printArray(leftRotate(arr, 2));
+		
+	//	MathUtil.printArray(MathUtil.reverse(arr));
+		MathUtil.printArray(rotateUsingTraveralAlog(arr, 2));
 	}
 }
