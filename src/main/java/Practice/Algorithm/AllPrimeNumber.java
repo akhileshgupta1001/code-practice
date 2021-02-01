@@ -10,7 +10,7 @@ public class AllPrimeNumber {
         ArrayList primeList = new ArrayList();
         if (number != 1) {
             for (int i = 2; i <= number; i++) {
-                if (PrimeNumber.isPrimmeNumber( i )) {
+                if (PrimeNumber.isPrimeNumber( i )) {
                     primeList.add( i );
                 }   
             }
