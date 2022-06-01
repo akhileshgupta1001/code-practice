@@ -68,21 +68,28 @@ public class LinkedListOperation {
 
     public static void main(String[] args) {
         Node head = null;
-        head = insertBeign(head, 30);
-        head = insertBeign(head, 20);
-        head = insertBeign(head, 10);
-        head = insertEnd(head, 35);
-        head = insertEnd(head, 40);
-        head = deleteFisrtNode(head);
-        head = deleteLastNode(head);
-        head = insertNodeAtIndex(head, 0, 10);
-        head = insertNodeAtIndex(head, 2, 25);
-        head = insertNodeAtIndex(head, 5, 40);
+        //head = insertBeign(head, 30);
+        //head = insertBeign(head, 20);
+        head = insertBeign(head, 17);
+        head = insertEnd(head, 15);
+        head = insertEnd(head, 8);
+        head = insertEnd(head, 12);
+        head = insertEnd(head, 10);
+        head = insertEnd(head, 5);
+        head = insertEnd(head, 4);
 
-        printNode(head);
+
+        // head = deleteFisrtNode(head);
+        // head = deleteLastNode(head);
+        //head = insertNodeAtIndex(head, 0, 10);
+        //head = insertNodeAtIndex(head, 2, 25);
+        //head = insertNodeAtIndex(head, 5, 40);
+
+        //printNode(head);
         System.out.println();
         // head= ReverseLL.reverseLL(head);
-        head = ReverseKthGroup.reverseKGroup(head, 3);
+        //head = ReverseKthGroup.reverseKGroup(head, 3);
+        head = EvenOddSeperation.evenOddSeperation(head);
         printNode(head);
         // PrintNthFromLastNode.printNthFromLastNode(head, 2);
     }
