@@ -30,7 +30,7 @@ Explanation 2:
 		 int ans = Integer.MIN_VALUE;
 		 for(int i=0;i<A.size();i++) {
 			 startIndex = Math.max(0,startIndex );
-			 startIndex+=A.get(i);
+			 startIndex=startIndex+A.get(i);
 			 ans=Math.max(ans,startIndex);
 		 }
 		return ans;
@@ -40,8 +40,8 @@ Explanation 2:
 		public static void main(String[] args) {
 			List<Integer> array = Arrays.asList(1, 2, 3, 4, -10);
 			List<Integer> array2 = Arrays.asList(-2, 1, -3, 4, -1, 2, 1, -5, 4);
-			//System.out.println(maxSubArray(array));
-			System.out.println(maxSubArray(array2));
+			System.out.println(maxSubArray(array));
+			//System.out.println(maxSubArray(array2));
 
 		
 	 }

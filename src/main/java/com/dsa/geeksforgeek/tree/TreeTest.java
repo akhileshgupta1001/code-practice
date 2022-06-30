@@ -17,6 +17,8 @@ public class TreeTest {
         // System.out.println(Size.getSize(tree.root));
         //  System.out.println(MaximumNode.getMax(tree.root));
        // PrintLeftView.leftView(tree.root, 1);
-        PrintLeftView.leftViewUsingItertaive(tree.root, 1);
+       // PrintLeftView.leftViewUsingItertaive(tree.root, 1);
+        System.out.println(ChildrenSumProperty.isChildrenSumProperty(tree.root));
+        System.out.println(CheckBalanceTree.isBalanceTree(tree.root));
     }
 }

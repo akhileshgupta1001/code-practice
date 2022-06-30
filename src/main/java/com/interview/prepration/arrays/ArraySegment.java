@@ -1,6 +1,6 @@
 package com.interview.prepration.arrays;
 
-public class ArraySegment {
+public class ArraySegment implements Tetst1234 {
 
 	// Check if a key is present in every segment of size k in an array
 
@@ -47,6 +47,8 @@ public class ArraySegment {
 		int[] arr2=new int[] { 5, 8, 7, 12, 14, 3, 9};
 		//System.out.println(findXinKwindowSize(arr.length, arr, 3, 3));
 		System.out.println(findXinKwindowSize(arr2.length, arr2, 8, 2));
+		 int basic = Tetst1234.data;
+
 
 	}
 }
