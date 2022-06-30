@@ -40,7 +40,16 @@ public class MoveAllZeroToEnd {
         arr[j] = temp;
         return arr;
     }
-
+    private String swap(String s,int start , int end){
+        while(start<=end){
+            char temp = s.charAt(start);
+            s.replace(s.charAt(start),s.charAt(end));
+            s.replace(s.charAt(end),temp);
+            start++;
+            end--;
+        }
+        return s;
+    }
 
     public static void main(String[] args) {
         for (int i : moveAllZero(new int[]{8, 0, 5, 0, 10})) {
