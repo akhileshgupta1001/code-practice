@@ -3,15 +3,15 @@ package com.dsa.geeksforgeek.arrays;
 public class MaxSumSubArray {
 
     public static int maxSumSubArray(int[] arr) {
-        int res = 0;
+        int maxSum = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
-            int current = 0;
+            int sum = 0;
             for (int j = i; j < arr.length; j++) {
-                current = current + arr[j];
-                res = Math.max(res, current);
+                sum = sum + arr[j];
+                maxSum = Math.max(maxSum, sum);
             }
         }
-        return res;
+        return maxSum;
     }
 
     public static int maXSum(int[] arr) {
@@ -29,7 +29,9 @@ public class MaxSumSubArray {
         int[] arr = new int[]{1, -2, 3, -1, 2};
         //4
         //System.out.println(maxSumSubArray(arr));
-
-        System.out.println(maXSum(arr));
+        int[] arr2 = new int[]{-1, -2, -3, -4};//-1
+        int[] arr3 = new int[]{1, 2, 3, -2, 5};// 9
+        int[] arr4 = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};//6
+        System.out.println(maxSumSubArray(arr4));
     }
 }

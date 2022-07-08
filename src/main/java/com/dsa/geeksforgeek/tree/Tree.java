@@ -4,7 +4,7 @@ public class Tree {
   public   Tree left, right;
    public int key;
 
-    Tree(int key) {
+    public Tree(int key) {
         this.key = key;
     }
     Tree(){}
