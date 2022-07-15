@@ -4,57 +4,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpiralMatrix {
-    public static List<Integer> getSpiralMatrix(int[][] arr) {
-        int direction = 0;
-        // 0 (Left->right)
-        // 1 (top -> bottom)
-        // 2 (right -> left )
-        // 3 (Bottom -> top)
-
-
-        int top = 0;
-        int bottom = arr.length - 1;
-        int left = 0;
-        int right = arr.length - 1;
+    public static List<Integer> getSpiralMatrix(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        String[] directions = new String[]{"RIGHT", "DOWN", "LEFT", "UP"};
         int index = 0;
 
-        List<Integer> list = new ArrayList<>();
+        int rowStart = 0;
+        int rowEnd = matrix.length - 1;
 
-        while (top <= bottom && left <= right) {
+        int colStart = 0;
+        int colEnd = matrix[0].length - 1;
 
-            if (direction == 0)
-                for (index = left; index <= right; index++) {
-                    list.add(arr[top][index]);
-                }
-            top++;
-            direction++;
-            if (direction == 1)
-                for (index = top; index <= bottom; index++) {
-                    list.add(arr[index][right]);
-                }
-            direction++;
-            right--;
-            if (direction == 2)
-                for (index = right; index >= left; index--) {
-                    list.add(arr[bottom][index]);
-                }
-            bottom--;
-            direction++;
-            if (direction == 3)
-                for (index = bottom; index >= top; index--) {
-                    list.add(arr[index][left]);
-                }
-            left++;
-            direction = (direction + 1) % 4;
+        while (rowStart <= rowEnd && colStart <= colEnd) {
+            switch (directions[index]) {
+                case "RIGHT":
+                    for (int i = colStart; i <= colEnd; i++) {
+                        result.add(matrix[rowStart][i]);
+                    }
+                    rowStart++;
+                    break;
+                case "DOWN":
+                    for (int i = rowStart; i <= rowEnd; i++) {
+                        result.add(matrix[i][colEnd]);
+                    }
+                    colEnd--;
+                    break;
+                case "LEFT":
+                    for (int i = colEnd; i >= colStart; i--) {
+                        result.add(matrix[rowEnd][i]);
+                    }
+                    rowEnd--;
+                    break;
+                case "UP":
+                    for (int i = rowEnd; i >= rowStart; i--) {
+                        result.add(matrix[i][colStart]);
+                    }
+                    colStart++;
+                    break;
+            }
+            index = (index + 1 ) % 4;
         }
-        return list;
+        return result;
     }
 
     public static void main(String[] args) {
-        int a[][] = {{1, 2, 3, 4},
-                {5, 6, 7, 8},
-                {9, 10, 11, 12},
-                {13, 14, 15, 16}};
+        int a[][] = {{1, 2, 3},
+                {4,5, 6},
+                {7,8,9}};
 
         System.out.println(getSpiralMatrix(a));
     }

@@ -23,5 +23,8 @@ public class FrequencyOfSortedArray {
         //  frequencyCount(new int[]{10, 10, 10, 25, 30, 30});
         //frequencyCount(new int[]{10, 10, 10, 10});
         frequencyCount(new int[]{10, 20, 30, 40, 50, 60});
+        frequencyCount(new int[]{10, 20, 30, 40, 50, 60});
+
+
     }
 }
