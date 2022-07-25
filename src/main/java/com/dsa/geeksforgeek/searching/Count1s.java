@@ -9,7 +9,7 @@ public class Count1s {
             int mid = (low + high) / 2;
 
             if (arr[mid] == 0)
-                return mid + 1;
+                low= mid + 1;
             else {
                 if (mid == 0 || arr[mid - 1] == 0)
                     return arr.length - mid;
@@ -20,5 +20,10 @@ public class Count1s {
         }
         return 0;
 
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{0,0,1,1,1,1,1};
+        System.out.println(countOnes(arr));
     }
 }
