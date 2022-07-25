@@ -22,6 +22,8 @@ public class MoveAllZeroToEnd {
     }
 
     //O(n)
+    //{8, 0,5, 0, 10}
+    // o/p {8,5,10}
     public static int[] moveZero(int[] arr) {
         int count = 0;
         for (int i = 0; i < arr.length; i++) {

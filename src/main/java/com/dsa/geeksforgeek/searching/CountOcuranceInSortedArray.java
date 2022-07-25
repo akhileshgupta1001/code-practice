@@ -12,7 +12,7 @@ public class CountOcuranceInSortedArray {
     }
 
     public static void main(String[] args) {
-        int[] arr= new int[]{10,20,20,20,40,40};
+        int[] arr= new int[]{10,20,20,20,20,40,40};
         System.out.println(getMaxOccurance(arr,20));
     }
 
