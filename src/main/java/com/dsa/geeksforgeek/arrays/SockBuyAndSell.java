@@ -34,15 +34,12 @@ public class SockBuyAndSell {
 
     //Eficient solution
     public static int maxProfitBuySellStock(int[] arr, int start, int end) {
-
-        System.out.println(arr.length);
         int profit = 0;
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] > arr[i - 1]) {
                 profit = profit + (arr[i] - arr[i - 1]);
             }
         }
-       int min= Integer.MIN_VALUE;
         return profit;
     }
 
