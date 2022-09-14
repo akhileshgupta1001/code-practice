@@ -34,7 +34,7 @@ public class Graph {
         addEdge(adjacencyList, 2, 3);
         addEdge(adjacencyList, 3, 4);
       // print(adjacencyList);
-      //  BFS.BFS(adjacencyList,vertex,0);
+        BFS.BFS(adjacencyList,vertex,0);
 
     }
 }

@@ -33,6 +33,8 @@ public class SockBuyAndSell {
     }
 
     //Eficient solution
+    //{1,5,3,1,2,8}
+    //11
     public static int maxProfitBuySellStock(int[] arr, int start, int end) {
         int profit = 0;
         for (int i = 1; i < arr.length; i++) {
