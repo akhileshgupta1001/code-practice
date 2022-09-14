@@ -1,14 +1,12 @@
 package com.dsa.geeksforgeek.graph;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.Queue;
+import java.util.*;
 
 public class BFS {
 
-    public static void  BFS(ArrayList<Integer> adjacency, int vertex,int source){
+    public static void  BFS(ArrayList<ArrayList<Integer> >adjacency, int vertex,int source){
         boolean visited[] = new boolean[vertex+1];
+        Arrays.fill(visited,false);
         Queue<Integer> queue = new LinkedList<>();
         visited[source]=true;
         queue.add(source);
@@ -16,9 +14,7 @@ public class BFS {
             // front node
             int u = queue.poll();
             System.out.print(u+" ");
-            ListIterator<Integer> data = adjacency.listIterator(u);
-            while(data.hasNext()){
-                int v = data.next();
+            for(int v : adjacency.get(u)){
                 // not visited yet
                 if(visited[v]==false){
                     visited[v]=true;

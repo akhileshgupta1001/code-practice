@@ -1,76 +1,54 @@
 package com.dsa.geeksforgeek.graph;
 
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
+
 
 
 //Time complexity: O(V + E), where V is the number of vertices and E is the number of edges in the graph.
 //Space Complexity: O(V), since an extra visited array of size V is required.
 public class DFS {
-    private int vertex;
-    private LinkedList<Integer> adjacency[];
+    static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v)
+    {
+        adj.get(u).add(v);
+        adj.get(v).add(u);
+    }
 
-   public DFS(int vertex){
-        this.vertex=vertex;
-        adjacency = new LinkedList[vertex];
-        for(int i=0;i<vertex;i++){
-            adjacency[i]=new LinkedList<>();
+    static void DFSRec(ArrayList<ArrayList<Integer>> adj,int s, boolean[] visited)
+    {
+        visited[s]=true;
+        System.out.print(s +" ");
+
+        for(int u:adj.get(s)){
+            if(visited[u]==false)
+                DFSRec(adj,u,visited);
         }
     }
 
-    // Function to add an edge into the graph
-    void addEdge(int v, int w)
-    {
-        adjacency[v].add(w); // Add w to v's list.
+    static void DFS(ArrayList<ArrayList<Integer>> adj, int V, int s){
+        boolean[] visited=new boolean[V];
+        for(int i = 0; i<V; i++)
+            visited[i] = false;
+
+        DFSRec(adj,s,visited);
     }
 
-    // A function used by DFS
-    void DFSUtil(int v, boolean visited[])
+    public static void main(String[] args)
     {
-        // Mark the current node as visited and print it
-        visited[v] = true;
-        System.out.print(v + " ");
+        int V = 7;
+        ArrayList<ArrayList<Integer> > adj = new ArrayList<ArrayList<Integer>>(V);
 
-        // Recur for all the vertices adjacent to this
-        // vertex
-        Iterator<Integer> i = adjacency[v].listIterator();
-        while (i.hasNext()) {
-            int n = i.next();
-            if (!visited[n])
-                DFSUtil(n, visited);
-        }
-    }
+        for (int i = 0; i < V; i++)
+            adj.add(new ArrayList<Integer>());
 
-    // The function to do DFS traversal.
-    // It uses recursive
-    // DFSUtil()
-    void DFS(int v)
-    {
-        // Mark all the vertices as
-        // not visited(set as false by default in java)
-        boolean visited[] = new boolean[this.vertex];
+        addEdge(adj,0,1);
+        addEdge(adj,0,2);
+        addEdge(adj,2,3);
+        addEdge(adj,1,3);
+        addEdge(adj,1,4);
+        addEdge(adj,3,4);
 
-        // Call the recursive helper
-        // function to print DFS
-        // traversal
-        DFSUtil(v, visited);
-    }
-    // Driver Code
-    public static void main(String args[])
-    {
-        DFS g = new DFS(4);
-
-        g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(2, 0);
-        g.addEdge(2, 3);
-        g.addEdge(3, 3);
-
-        System.out.println(
-                "Following is Depth First Traversal "
-                        + "(starting from vertex 2)");
-
-        g.DFS(0);
+        System.out.println("Following is Depth First Traversal: ");
+        DFS(adj,V,0);
     }
 }
+
