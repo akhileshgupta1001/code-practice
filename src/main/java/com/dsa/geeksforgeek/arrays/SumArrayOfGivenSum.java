@@ -38,7 +38,25 @@ public class SumArrayOfGivenSum {
             System.out.println("Sub array occurs between : "+startIndex+ " to : "+endIndex);
     }
 
+    public static boolean isGivenSumExist(int [] arr, int sum){
+        int startIndex=0,endIndex =0,currentSum=0;
+        for(endIndex=0;endIndex<arr.length;endIndex++){
+            currentSum = currentSum+ arr[endIndex];
+            while(currentSum>sum && startIndex<endIndex) {
+                currentSum = currentSum-arr[startIndex];
+                startIndex++;
+            }
+            if(currentSum==sum){
+                return true;
+            }
+        }
+
+        return false;
+
+
+    }
+
     public static void main(String[] args) {
-        getSubArraySum(new int[]{10,15,-5,15,-10,5},5);
+        System.out.println(isGivenSumExist(new int[]{10,15,-5,15,-10,5},5));
     }
 }
