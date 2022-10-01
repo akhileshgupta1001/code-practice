@@ -12,6 +12,7 @@ Explanation: there are four ways to make up the amount:
 5=2+1+1+1
 5=1+1+1+1+1
      */
+
     public static int change(int amount, int[] coins, int n) {
 
         if(amount==0) return 1;

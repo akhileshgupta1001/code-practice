@@ -9,12 +9,26 @@ public class PrintLeftView {
     public static void leftView(Tree tree, int level) {
         if (tree == null)
             return;
+        // level have no value
         if (maxLevel < level) {
             System.out.print(tree.key + " ");
             maxLevel = level;
         }
         leftView(tree.left, level + 1);
         leftView(tree.right, level + 1);
+    }
+
+    public static void rightView(Tree tree, int level) {
+        if (tree == null)
+            return;
+        // level have no value
+        if (maxLevel < level) {
+            System.out.print(tree.key + " ");
+            maxLevel = level;
+        }
+        leftView(tree.right, level + 1);
+        leftView(tree.left, level + 1);
+
     }
 
     public static void leftViewUsingItertaive(Tree tree, int level) {
