@@ -51,6 +51,7 @@ public class MinimumJumpsToReachEnd {
 
     public static void main(String[] args) {
         int[] arr = new int[]{ 1, 3, 6, 3, 2, 3, 6, 8, 9, 5};
+        int[] arr2 = {};
         System.out.println(jump(arr));
     }
 }

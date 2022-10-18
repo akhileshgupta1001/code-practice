@@ -16,6 +16,7 @@ public class PreviousSmallerElement {
 
         for(int i=0;i<arr.length;i++){
 
+            // If top element is smaller than remove the top
             while (!stack.isEmpty() && stack.peek()>= arr[i]){
                 stack.pop();
             }
