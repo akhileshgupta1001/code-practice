@@ -71,6 +71,19 @@ public class IntersectionLL {
         }
     }
 
+    public static int getIntersectionPoint(Node head1, Node head2){
+        if(head1== null || head2== null) return -1;
+
+        Node a= head1;
+        Node b = head2;
+
+        while (a != b){
+            a=a==null? head2:a.next;
+            b=b==null? head1:b.next;
+        }
+        return a.data;
+    }
+
 
     public static void main(String[] args) {
         Node newNode;
@@ -95,6 +108,6 @@ public class IntersectionLL {
         head1.next.next.next = null;
 
      //   System.out.print(getIntersection(head1, head2));
-        System.out.print(getNode(head1, head2));
+        System.out.print(getIntersectionPoint(head1, head2));
     }
 }
