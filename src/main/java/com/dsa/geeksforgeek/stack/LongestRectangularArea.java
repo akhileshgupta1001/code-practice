@@ -42,7 +42,7 @@ public class LongestRectangularArea {
         Stack<Integer> stack = new Stack<>();
         for(int i =0;i<arr.length;i++){
 
-            while (!stack.isEmpty() && arr[stack.peek()]>= arr[i]){
+            while (!stack.isEmpty() && stack.peek()>= arr[i]){
                 top = stack.peek();
                 stack.pop();
                 current = arr[top]*(stack.isEmpty()?i:i-stack.peek()-1);

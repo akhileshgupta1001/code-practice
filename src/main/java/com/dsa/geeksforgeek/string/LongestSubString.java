@@ -66,6 +66,6 @@ public class LongestSubString {
 
     public static void main(String[] args) {
         // System.out.println(longestSubStringCount("abcad"));
-        System.out.println(longestUniqueSubString("abcad"));
+        System.out.println(longestUniqueSubString("babad"));
     }
 }
