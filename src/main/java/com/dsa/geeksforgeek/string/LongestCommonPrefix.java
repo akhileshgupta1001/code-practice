@@ -31,6 +31,8 @@ public class LongestCommonPrefix {
 
         Arrays.sort(strs);
 
+        StringBuilder sb = new StringBuilder();
+
         char[] first = strs[0].toCharArray();
         char[] last = strs[strs.length-1].toCharArray();
         String result ="";

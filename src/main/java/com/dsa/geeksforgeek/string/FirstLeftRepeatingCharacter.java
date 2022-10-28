@@ -1,6 +1,6 @@
 package com.dsa.geeksforgeek.string;
 
-public class LeftRepeatCharacter {
+public class FirstLeftRepeatingCharacter {
     public static int leftMostCharacter(String str){
         int characterCount = 256;
         char[] arr = new char[characterCount];
@@ -15,6 +15,7 @@ public class LeftRepeatCharacter {
         return -1;
     }
     public static void main(String[] args) {
-        System.out.println(leftMostCharacter("abccbd"));
+       // System.out.println(leftMostCharacter("abccbd"));
+        System.out.println(leftMostCharacter("loveleetcode"));
     }
 }
