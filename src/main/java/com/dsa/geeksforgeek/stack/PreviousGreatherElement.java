@@ -23,6 +23,8 @@ public class PreviousGreatherElement {
         return list;
     }
     public static void main(String[] args) {
-     getPreviousGreatherElement(new int[]{10, 4, 2, 20, 40, 12, 30});
+        int[] arr = new  int[]{13 , 7, 6 , 12 };
+        getPreviousGreatherElement(arr);
+    // getPreviousGreatherElement(new int[]{10, 4, 2, 20, 40, 12, 30});
     }
 }

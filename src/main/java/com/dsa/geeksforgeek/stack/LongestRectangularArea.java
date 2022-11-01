@@ -62,6 +62,6 @@ public class LongestRectangularArea {
 
 
     public static void main(String[] args) {
-        System.out.println(getLongestRectangularAreaUsingSatck(new int[]{ 6, 2, 5, 4, 5, 1, 6 }));
+        System.out.println(getLongestRectangularArea(new int[]{ 6, 2, 5, 4, 5, 1, 6 }));
     }
 }

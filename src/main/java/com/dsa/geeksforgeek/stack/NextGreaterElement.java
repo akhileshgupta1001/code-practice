@@ -23,6 +23,7 @@ public class NextGreaterElement {
             list.add(stack.isEmpty()?-1:stack.peek());
             stack.add(arr[i]);
         }
+        System.out.println("Previous : "+list);
         Collections.reverse(list);
         return  list;
     }
