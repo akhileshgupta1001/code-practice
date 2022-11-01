@@ -8,7 +8,7 @@ import java.util.Stack;
 public class PreviousSmallerElement {
 
     // arr =[4,10,5,8,20,15,3,12]
-    //[]
+    //[4, 4, 5, 8, 8, 3]
 
     public static List<Integer> getPreviousSmallerElement(int[] arr){
         Stack<Integer> stack = new Stack<>();
@@ -21,9 +21,14 @@ public class PreviousSmallerElement {
                 stack.pop();
             }
 
-            if(!stack.isEmpty() && stack.peek()<arr[i]){
+            // If element is greater than top element then add into result list
+           /* if(!stack.isEmpty() && stack.peek()<arr[i]){
                 list.add(stack.peek());
             }
+
+*/
+            int previousGreather = stack.isEmpty()?-1:stack.peek();
+            list.add(previousGreather);
 
             stack.push(arr[i]);
 
