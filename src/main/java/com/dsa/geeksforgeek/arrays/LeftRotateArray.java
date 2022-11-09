@@ -47,6 +47,8 @@ public class LeftRotateArray {
 
     //3rd
     public static int[] leftRotate(int[] arr, int d) {
+        int n = arr.length;
+        d=d%n;
         arr = reverse(arr, 0, d - 1);
         arr = reverse(arr, d, arr.length - 1);
         arr = reverse(arr, 0, arr.length - 1);
