@@ -50,7 +50,7 @@ public class ThreeSum {
             int  k = nums.length-1;
             while(j<k){
                 int sum = nums[i]+nums[j]+nums[k];
-                if(sum==0)res.add(Arrays.asList(nums[i],nums[j++],nums[k--]));
+                if(sum==0) res.add(Arrays.asList(nums[i],nums[j++],nums[k--]));
                 else if ( sum >0) k--;
                 else if (sum<0) j++;
             }
@@ -69,5 +69,6 @@ public class ThreeSum {
         //nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
         //The distinct triplets are [-1,0,1] and [-1,-1,2].
         //Notice that the order of the output and the order of the triplets does not matter.
+
     }
 }
