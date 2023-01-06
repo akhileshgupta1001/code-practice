@@ -72,8 +72,8 @@ public class PermutaionOfString {
     }
 
     public static void main(String[] args) {
-       // permutation("ABC",0);
-        System.out.println(permutationArray(new int[] {1,2,3}));
+        permutation("ABC",0);
+       // System.out.println(permutationArray(new int[] {1,2,3}));
     }
 
 }

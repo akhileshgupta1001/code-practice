@@ -1,3 +1,6 @@
+import javafx.util.Pair;
+
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Board {
@@ -64,4 +67,6 @@ public class Board {
     }
 
 
+    public List<Pair<Integer, Integer>> getFreeCells() {
+    }
 }

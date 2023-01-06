@@ -1,13 +1,15 @@
 package com.dsa.geeksforgeek.searching;
 
+import com.dsa.geeksforgeek.searching.important.FirstLastOccurance;
+
 public class CountOcuranceInSortedArray {
 
     public static int getMaxOccurance(int[] arr, int searchElement) {
-        int firstOccurance = FirstLastOccurance.findFirstOccurance(arr, searchElement);
+        int firstOccurance = FirstLastOccurance.firstPosition(arr, searchElement);
         if (firstOccurance == -1)
             return 0;
         else
-            return (FirstLastOccurance.findLastOccurance(arr, searchElement)
+            return (FirstLastOccurance.LastPosition(arr, searchElement)
                     - firstOccurance + 1);
     }
 

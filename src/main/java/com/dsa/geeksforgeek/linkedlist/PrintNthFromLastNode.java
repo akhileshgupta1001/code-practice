@@ -20,7 +20,5 @@ public class PrintNthFromLastNode {
             current = current.next;
         }
         System.out.println("Data : " + current.data);
-
-
     }
 }
