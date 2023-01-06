@@ -1,5 +1,7 @@
 package com.dsa.geeksforgeek.string;
 
+import java.util.Arrays;
+
 public class LongestPalindromicSubstring {
     public static String longestPalindromeByBruteForce(String s) {
         int n = s.length();
@@ -11,7 +13,7 @@ public class LongestPalindromicSubstring {
 
         String result = "";
         for (int i = 0; i < n - 1; i++) {
-            for (int j = 1; j <= n - i; j++) {
+            for (int j = i+1; j <= n - i; j++) {
                 if (isPalindrome(s.substring(i, j))) {
                     if (result.length() < j)
                         result = s.substring(i, j);
@@ -31,12 +33,34 @@ public class LongestPalindromicSubstring {
         return true;
     }
 
+
+
+    public static int getLCS(String a, String b , int m, int n, int[][] arr){
+        if(arr[m][n] != -1){ return arr[m][n];}
+        if(m==0|| n==0) return 0;
+
+        if(a.charAt(m-1)==b.charAt(n-1))
+            arr[m][n] = 1+ getLCS(a,b,m-1,n-1,arr);
+        else
+            arr[m][n] = Math.max(getLCS(a,b,m-1,n,arr),getLCS(a,b,m,n-1,arr));
+
+        return arr[m][n];
+    }
+    public static int lpsByLCS(String str){
+        String rev = new StringBuffer(str).reverse().toString();
+        System.out.println("Str : "+str +" , rev : "+rev);
+        int[][] arr = new int[str.length()+1][str.length()+1];
+        Arrays.stream(arr).forEach( data-> Arrays.fill(data,-1));
+
+        return getLCS(str,rev,str.length(),str.length(),arr);
+
+    }
+
     public static int expandLength(String s, int i, int j) {
         while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
             i--;
             j++;
         }
-
         return j - i - 1;
     }
 
@@ -62,6 +86,6 @@ public class LongestPalindromicSubstring {
         //  Input: s = "babad"
         // Output: "bab"
         // Explanation: "aba" is also a valid answer.
-        System.out.println(longestPalindromeByBruteForce("babad"));
+        System.out.println(lpsByLCS("babad"));
     }
 }

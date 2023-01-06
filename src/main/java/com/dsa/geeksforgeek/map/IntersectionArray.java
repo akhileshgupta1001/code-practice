@@ -29,6 +29,18 @@ public class IntersectionArray {
     public static void main(String[] args) {
         int[] arr1 = {10, 20, 10, 30, 20};
         int[] arr2 = {20, 10, 10, 40};
-        intersectionArray(arr1, arr2);
+      //  intersectionArray(arr1, arr2);
+        System.out.println(getIntersection(arr1,arr2));
+    }
+
+    public static  int getIntersection(int[] arr1, int arr2[]){
+        int min = Math.min(arr1.length,arr2.length);
+
+        for(int i=0;i<min;i++){
+            if(arr1[i]==arr2[i])
+                return arr1[i];
+        }
+
+        return -1;
     }
 }

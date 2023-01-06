@@ -10,6 +10,7 @@ public class EvenOddSeperation {
         Node current = head;
         while (current != null) {
 
+
             int nodeData = current.data;
             if (nodeData % 2 == 0) {
                 if (evenStart == null) {

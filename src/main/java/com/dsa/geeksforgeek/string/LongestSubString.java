@@ -40,7 +40,7 @@ public class LongestSubString {
         for (int i = 0; i < s.length(); i++) {
             boolean isVistedArray[] = new boolean[256];
             for (int j = i; j < s.length(); j++) {
-
+              //babad
                 if (isVistedArray[s.charAt(j)] == true)
                     break;
                 else {
@@ -66,6 +66,6 @@ public class LongestSubString {
 
     public static void main(String[] args) {
         // System.out.println(longestSubStringCount("abcad"));
-        System.out.println(longestUniqueSubString("babad"));
+        System.out.println(longestUniqueSubString("abcabcbb"));
     }
 }
