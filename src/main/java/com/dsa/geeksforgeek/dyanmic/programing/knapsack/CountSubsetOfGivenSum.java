@@ -11,26 +11,29 @@ public class CountSubsetOfGivenSum {
     //Output: 4
 
     public static int getCountSubsetOfGivenSum(int[] arr, int sum) {
-        int[][] dp = new int[sum + 1][arr.length + 1];
-        for (int i = 0; i <= arr.length; i++) {
-            dp[0][i] = 1;
-        }
+        int tab[][] = new int[arr.length + 1][sum + 1];
 
-        for (int j = 1; j <= sum; j++) {
-            dp[j][0] = 0;
-        }
-        for (int i = 1; i <= sum; i++) {
-            for (int j = 1; j <= arr.length; j++) {
+        // Initializing the first value of matrix
+        tab[0][0] = 1;
+
+        for (int i = 1; i <= sum; i++)
+            tab[0][i] = 0;
+
+        for (int i = 1; i <= arr.length; i++) {
+            for (int j = 0; j <= sum; j++) {
+                // If the value is greater than the sum
                 if (arr[i - 1] > j)
-                    dp[i][j] = dp[i - 1][j];
+                    tab[i][j] = tab[i - 1][j];
+
                 else {
-                    dp[i][j] = dp[i - 1][j] +
-                            dp[i - 1][j - arr[i - 1]];
+                    tab[i][j] = tab[i - 1][j] +
+                            tab[i - 1][j - arr[i - 1]];
                 }
             }
         }
-        return dp[sum][arr.length];
+        return tab[arr.length][sum];
     }
+
 
     public static void main(String[] args) {
         System.out.println(getCountSubsetOfGivenSum(new int[]{1, 2, 3, 3}, 6));
