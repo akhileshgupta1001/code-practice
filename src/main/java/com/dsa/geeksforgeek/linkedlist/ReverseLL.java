@@ -3,6 +3,10 @@ package com.dsa.geeksforgeek.linkedlist;
 public class ReverseLL {
 
     public static Node reverseLL(Node head) {
+        return getNode(head);
+    }
+
+    private static Node getNode(Node head) {
         Node current = head;
         Node prev = null;
 

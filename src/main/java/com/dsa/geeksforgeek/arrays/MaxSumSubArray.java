@@ -29,11 +29,11 @@ public class MaxSumSubArray {
     public static void main(String[] args) {
         int[] arr = new int[]{1, -2, 3, -1, 2};
         //4
-        //System.out.println(maxSumSubArray(arr));
+        System.out.println(maXSum(arr));
         int[] arr2 = new int[]{-1, -2, -3, -4};//-1
         int[] arr3 = new int[]{1, 2, 3, -2, 5};// 9
         int[] arr4 = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};//6
         int[] arr5 = new int[]{2,3,-2,4};
-        System.out.println(maXSum(arr5));
+        //System.out.println(maXSum(arr5));
     }
 }

@@ -21,4 +21,17 @@ public class PrintNthFromLastNode {
         }
         System.out.println("Data : " + current.data);
     }
+
+    public static void main(String args[])
+    {
+        Node head=new Node(10);
+        head.next=new Node(20);
+        head.next.next=new Node(30);
+        head.next.next.next=new Node(40);
+        head.next.next.next.next=new Node(50);
+      //  printlist(head);
+        System.out.print("Nth node from end of Linked List: ");
+        printNthFromLastNode(head,2);
+
+    }
 }
