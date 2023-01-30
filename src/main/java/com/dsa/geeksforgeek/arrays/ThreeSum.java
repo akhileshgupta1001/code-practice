@@ -5,26 +5,26 @@ import java.util.*;
 public class ThreeSum {
     List<List<Integer>> result = new ArrayList<>();
 
-    void twoSumSorted(int i, int j, int[] nums, int target) {
-        int a1 = nums[i - 1];
-        while (i < j) { //search space
-            if (nums[i] + nums[j] > target) {
-                j--;
-            } else if (nums[i] + nums[j] < target) {
-                i++;
+    void twoSumSorted(int low, int high, int[] nums, int target) {
+        int a1 = nums[low - 1];
+        while (low < high) { //search space
+            if (nums[low] + nums[high] > target) {
+                high--;
+            } else if (nums[low] + nums[high] < target) {
+                low++;
             } else {
                 List<Integer> list = new ArrayList();
                 list.add(a1);
-                list.add(nums[i]);
-                list.add(nums[j]);
+                list.add(nums[low]);
+                list.add(nums[high]);
                 result.add(list);
                 //duplicate b
-                while (i < j && nums[i] == nums[i + 1]) i++;
+                while (low < high && nums[low] == nums[low + 1]) low++;
                 //duplicate c
-                while (i < j && nums[j] == nums[j - 1]) j--;
+                while (low < high && nums[high] == nums[high - 1]) high--;
 
-                i++;
-                j--;
+                low++;
+                high--;
             }
         }
     }

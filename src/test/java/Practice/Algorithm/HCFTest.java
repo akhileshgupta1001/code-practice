@@ -12,7 +12,7 @@ class HCFTest {
 
 	public static void main(String[] args) {
 		System.out.println(Integer.toBinaryString(50));
-		(a + d) * (c + b)
+		//(a + d) * (c + b)
 
 	}
 
