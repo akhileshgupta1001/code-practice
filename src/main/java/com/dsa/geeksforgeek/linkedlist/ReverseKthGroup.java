@@ -4,6 +4,7 @@ public class ReverseKthGroup {
 
     //10 20 25 30 35 40
     //25 20 10 40 35 30
+    // O (k)
     public static Node reverseKthGroup(Node head, int index) {
 
         Node current = head;

@@ -7,7 +7,6 @@ public class EvenOdd {
     public void oddNumber(){
         synchronized (this){
             while (counter<N){
-
                 while (counter %2==0){
                     try {
                         wait();
@@ -56,7 +55,6 @@ public class EvenOdd {
                 evenOdd.oddNumber();
             }
         },"Odd");
-
         thread1.start();;
         thread2.start();
     }
