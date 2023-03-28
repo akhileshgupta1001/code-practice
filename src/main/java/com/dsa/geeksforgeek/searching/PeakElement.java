@@ -20,6 +20,20 @@ public class PeakElement {
         return -1;
     }
 
+    //  int arr[] = {5, 20, 40, 30, 20, 50, 60}, n = 7;
+    public static int getPeakElement(int[] arr, int low , int high, int len){
+        int mid = low + (high-low)/2;
+        if((mid==0 || arr[mid-1]<=arr[mid]) && (mid==len-1 || arr[mid+1] <= arr[mid])){
+            return mid;
+        }
+        else if(mid>0 && arr[mid-1]>arr[mid]){
+            return getPeakElement(arr,low,mid-1,len);
+        }else {
+            return getPeakElement(arr,mid+1,high,len);
+        }
+    }
+
+
 
     // O(logn)
     public static int getPeak(int[] arr,int n){
@@ -41,9 +55,23 @@ public class PeakElement {
         return -1;
     }
 
+    public static int getPeakElement(int[] arr){
+        int low =0;
+        int high =arr.length-1;
+        while (low<high){
+            int mid = low + (high-low)/2;
+            if(arr[mid]<arr[mid+1]){
+                low = mid+1;
+            }else {
+                high = mid;
+            }
+        }
+      return low;
+    }
+
     public static void main(String[] args) {
         int arr[] = {5, 20, 40, 30, 20, 50, 60}, n = 7;
 
-        System.out.println(getPeak(arr, n));
+        System.out.println(getPeakElement(arr));
     }
 }

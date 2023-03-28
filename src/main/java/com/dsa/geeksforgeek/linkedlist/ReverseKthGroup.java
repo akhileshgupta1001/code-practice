@@ -6,7 +6,6 @@ public class ReverseKthGroup {
     //25 20 10 40 35 30
     // O (k)
     public static Node reverseKthGroup(Node head, int index) {
-
         Node current = head;
         Node prev = null;
         Node next = null;

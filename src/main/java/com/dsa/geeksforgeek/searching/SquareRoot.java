@@ -20,11 +20,11 @@ public class SquareRoot {
             int square = mid*mid;
             if(square==number)
                 return mid;
-            else if (square>number) {
-                high = mid-1;
-            }else {
+            else if (square<number) {
                 low =mid+1;
                 ans=mid;
+            }else {
+                high = mid-1;
             }
         }
         return ans;
