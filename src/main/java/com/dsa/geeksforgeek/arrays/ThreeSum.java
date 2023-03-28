@@ -60,6 +60,37 @@ public class ThreeSum {
 
     }
 
+    public static List<List<Integer>> threeSumByBetterApproach(int[] nums,int target) {
+        Arrays.sort(nums);
+        List<List<Integer>> list = new ArrayList<>();
+        for(int i=0;i< nums.length;i++){
+
+            if(i==0 ||( nums[i] != nums[i-1])){
+                int j = i+1;
+                int k = nums.length-1;
+                int tar = target-nums[i];
+                while (j<k){
+                    if(nums[j]+nums[k]==tar){
+                     list.add(Arrays.asList(nums[i],nums[j],nums[k]));
+                     while (j<k && nums[j] == nums[j+1]) j++;
+                     while (j<k && nums[k]==nums[k-1]) k--;
+                     j++;
+                     k--;
+                    }else if(nums[j]+nums[k]<tar){
+                        j++;
+                    }else {
+                        k--;
+                    }
+                }
+
+            }
+        }
+    return list;
+    }
+
+
+
+
     public static void main(String[] args) {
         //Input: nums = [-1,0,1,2,-1,-4]
         //Output: [[-1,-1,2],[-1,0,1]]
@@ -69,6 +100,6 @@ public class ThreeSum {
         //nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
         //The distinct triplets are [-1,0,1] and [-1,-1,2].
         //Notice that the order of the output and the order of the triplets does not matter.
-
+        System.out.println(threeSumByBetterApproach(new int[]{-1,0,1,2,-1,-4},0));
     }
 }
