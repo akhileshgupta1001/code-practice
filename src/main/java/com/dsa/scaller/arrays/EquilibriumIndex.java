@@ -53,56 +53,94 @@ public class EquilibriumIndex {
     //1                   1                                   3
     //2                   3                                   0
     //Thus, there is no such index.
-    
+
     public int solve(ArrayList<Integer> A) {
         int n = A.size();
         ArrayList<Long> prefix = new ArrayList<>();
-        prefix.add((long )A.get(0));
-        for(int i=1;i<n;i++){
-            prefix.add((long) prefix.get(i-1)+A.get(i));
+        prefix.add((long) A.get(0));
+        for (int i = 1; i < n; i++) {
+            prefix.add((long) prefix.get(i - 1) + A.get(i));
         }
 
 
-        int ans=-1;
-        for(int i=0;i<A.size();i++){
-            if(i==0 && prefix.get(n-1)-prefix.get(i)==0){
-                ans =i;
+        int ans = -1;
+        for (int i = 0; i < A.size(); i++) {
+            if (i == 0 && prefix.get(n - 1) - prefix.get(i) == 0) {
+                ans = i;
                 break;
             }
-            if(i != 0 && prefix.get(i-1)==prefix.get(n-1)-prefix.get(i)){
+            if (i != 0 && prefix.get(i - 1) == prefix.get(n - 1) - prefix.get(i)) {
                 ans = i;
                 break;
             }
         }
         return ans;
     }
+
     public int solve2(ArrayList<Integer> A) {
         int n = A.size();
         long[] prefixSum = new long[n];
         prefixSum[0] = A.get(0);
         // Calculate prefix sum
-        for(int i=1; i<n; i++){
-            prefixSum[i] = prefixSum[i-1] + A.get(i);
+        for (int i = 1; i < n; i++) {
+            prefixSum[i] = prefixSum[i - 1] + A.get(i);
         }
 
         int ans = -1;
         long lsum;
         long rsum;
-        for(int i=0;i<n;i++){
+        for (int i = 0; i < n; i++) {
             // lsum = prefixSum[i-1];
             ;
-            if(i==0){
+            if (i == 0) {
                 lsum = 0;
-            }else{
-                lsum = prefixSum[i-1];
+            } else {
+                lsum = prefixSum[i - 1];
             }
-            rsum = prefixSum[n-1]-prefixSum[i];
-            if(lsum==rsum){
+            rsum = prefixSum[n - 1] - prefixSum[i];
+            if (lsum == rsum) {
                 ans = i;
                 break;
             }
         }
-        return ans ;
+        return ans;
+    }
+
+    public static int pivotIndex(int[] nums) {
+        int n = nums.length;
+
+        int[] lsum = new int[n];
+        int[] rsum = new int[n];
+        lsum[0]=0;
+        for (int i = 1; i < n; i++) {
+            lsum[i] = lsum[i - 1] + nums[i-1];
+        }
+        for (int i = 0; i < lsum.length; i++) {
+            System.out.print(lsum[i]+ " ");
+        }
+        System.out.println();
+        rsum[n-1]=0;
+        for(int i=n-2;i>=0;i--){
+            rsum[i]= rsum[i+1]+nums[i+1];
+        }
+
+        for (int i = 0; i < rsum.length; i++) {
+            System.out.print(rsum[i]+" ");
+        }
+        System.out.println();
+        int i = 0;
+        while (n > 0) {
+            if (lsum[i] == rsum[i]) {
+                return i;
+            }
+            i++;
+            n--;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(pivotIndex(new int[]{1,7,3,6,5,6}));
     }
 
 }
