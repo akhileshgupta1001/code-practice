@@ -6,7 +6,7 @@ public class FindTheNumberInSortedMatrix {
     public static boolean getElement(int[][] arr,int rowSize, int columnSize,int searchElement){
 
        int startIndex=0;
-       int endIndex= rowSize-1;
+       int endIndex= columnSize-1;
        while (startIndex >=0 && startIndex< rowSize &&  endIndex>=0 && endIndex< columnSize){
 
            if(arr[startIndex][endIndex]==searchElement){
@@ -45,7 +45,7 @@ public class FindTheNumberInSortedMatrix {
     }
 
     public static void main(String[] args) {
-        int n = 4, m = 5, x = 123;
+        int n = 4, m = 5, x = 122;
         int mat[][] = {{0, 6, 8, 9,    11},
                       {20, 22, 28, 29, 31},
                       {36, 38, 50, 61, 63},
@@ -53,6 +53,6 @@ public class FindTheNumberInSortedMatrix {
         System.out.println(mat.length);
         System.out.println(mat[0].length);
 
-       // System.out.println(getElement(mat, n, m, x));
+        System.out.println(getElement(mat, mat.length, mat[0].length, x));
     }
 }
