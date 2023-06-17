@@ -31,7 +31,31 @@ public class Contest {
         return maxValue;
     }
 
+
+    public static ArrayList<Integer> solve(int A, int B) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        boolean[] isPrime = new boolean[B+1];
+        Arrays.fill(isPrime,true);
+        for(int i=0;i<2;i++){
+            isPrime[i]= false;
+        }
+        for(int i=2;i<=B;i++){
+            if(isPrime[i]){
+                for(int j=i*i;j<=B;j=j+i){
+                    //if(j<=B)
+                    isPrime[j] = false;
+                }
+                if( i>= A && isPrime[i] && ((i==3 && i%3==0) || (i%10==3))){
+                    ans.add(i);
+                }
+            }
+
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
-        System.out.println(solve(new ArrayList<>(Arrays.asList(1,1,6,11,14,14,17,18,18,1))));
+       // System.out.println(solve(new ArrayList<>(Arrays.asList(1,1,6,11,14,14,17,18,18,1))));
+        System.out.println(solve(225,848));
     }
 }
