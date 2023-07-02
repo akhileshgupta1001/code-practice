@@ -1,6 +1,7 @@
 package com.dsa.scaller.sorting;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class LargestNumber {
@@ -59,12 +60,48 @@ public class LargestNumber {
         for (int i = 0; i < A.size(); i++) {
             arr[i] = String.valueOf(A.get(i));
         }
-        Arrays.sort(arr, (a, b) -> (b + a).compareTo(a + b));
+
+
+       // Arrays.sort(arr, (a, b) -> (b + a).compareTo(a + b));
 
         StringBuilder sb = new StringBuilder();
         for (String s : arr) {
             sb.append(s);
         }
         return sb.charAt(0) == '0' ? "0" : sb.toString();
+    }
+
+    static int power(int number, int power , int mod){
+        if(power==0) return 1;
+
+        long x = power(number,power/2,mod);
+        x= (x * x) % mod;
+        if(power%2==0){
+            return (int) x;
+        }else{
+            return (int)(x * number)%mod;
+        }
+    }
+    public  static   int solve(int[] A) {
+        Arrays.sort(A);
+        int ans =0;
+        int n= A.length;
+
+        int mod = (int) 1000000007;
+
+
+        for(int i=0;i<A.length;i++){
+
+            int powerCal = (power(2,i,mod) % mod -power(2,n-1-i,mod) % mod) % mod;
+                 ans+=  ((A[i] %mod) * powerCal % mod)%mod;
+
+
+        }
+
+        return ans;
+    }
+
+    public static void main(String[] args) {
+     solve(new int[]{5,4,2});
     }
 }
