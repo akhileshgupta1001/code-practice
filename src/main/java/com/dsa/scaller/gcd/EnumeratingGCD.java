@@ -1,5 +1,9 @@
 package com.dsa.scaller.gcd;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class EnumeratingGCD {
     //Problem Description
     //You are given a number A and a number B. Greatest Common Divisor (GCD) of all numbers between A and B inclusive is taken (GCD(A, A+1, A+2 ... B)).
@@ -41,7 +45,29 @@ public class EnumeratingGCD {
     //Greatest divisor that divides both 1 and 3 is 1.
 
     public String solve(String A, String B) {
+        //Collections.swap(new);
         if (A.equals(B)) return A;
         else return "1";
+    }
+
+    public static int[] solve2(int[] A) {
+        int[] frequency= new int [10];
+
+        for(int i=0;i<A.length;i++){
+            frequency[A[i]]++;
+        }
+        int k =0;
+        for(int d=0;d < frequency.length;d++){
+            for(int j= 1; j <= frequency[d];j++){
+                A[k]=d;
+             k++;
+            }
+            }
+        Arrays.stream(A).forEach(System.out::println);
+        return A;
+    }
+
+    public static void main(String[] args) {
+        solve2(new int[]{1,3,6,8,2,1});
     }
 }
