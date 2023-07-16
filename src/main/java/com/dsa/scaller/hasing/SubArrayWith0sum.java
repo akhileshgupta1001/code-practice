@@ -56,6 +56,21 @@ public class SubArrayWith0sum {
 //
 // The array has sum 0.
 
+    public int solve2(int[] A) {
+        // Just write your code below to complete the function. Required input is available to you as the function arguments.
+        // Do not print the result or any output. Just return the result via this function.
+
+        for (int i = 0; i < A.length; i++) {
+            // int sum = A[i];
+            int sum = 0;
+            for (int j = i; j < A.length; j++) {
+                sum += A[j];
+                if (sum == 0) return 1;
+            }
+        }
+        return 0;
+    }
+
     public int solve(int[] A) {
         // Just write your code below to complete the function. Required input is available to you as the function arguments.
         // Do not print the result or any output. Just return the result via this function.
@@ -72,8 +87,25 @@ public class SubArrayWith0sum {
         return 0;
     }
 
+    public int solve3(int[] A) {
+        // Just write your code below to complete the function. Required input is available to you as the function arguments.
+        // Do not print the result or any output. Just return the result via this function.
+        HashSet<Long> set = new HashSet<Long>();
+        long sum = 0;
+        set.add(sum);
+        for (int x : A) {
+            sum += x;
+            if (set.contains(sum)) return 1;
+            else
+                set.add(sum);
+
+        }
+        return 0;
+    }
+
+
     public static void main(String[] args) {
-        ArrayList<Integer> integers = new ArrayList<>(Arrays.asList(1,2,3,3,3,4,5,6));
+        ArrayList<Integer> integers = new ArrayList<>(Arrays.asList(1, 2, 3, 3, 3, 4, 5, 6));
         System.out.println(integers);
         integers.remove(integers.indexOf(3));
         System.out.println(integers);
