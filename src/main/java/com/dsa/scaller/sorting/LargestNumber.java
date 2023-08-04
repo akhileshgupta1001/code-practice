@@ -54,7 +54,7 @@ public class LargestNumber {
     //
     //Reorder the numbers to [9, 3, 2, 0] to form the largest number 9320.
 
-    public String largestNumber(final List<Integer> A) {
+    public static String largestNumber(final List<Integer> A) {
         String[] arr = new String[A.size()];
 
         for (int i = 0; i < A.size(); i++) {
@@ -62,7 +62,7 @@ public class LargestNumber {
         }
 
 
-       // Arrays.sort(arr, (a, b) -> (b + a).compareTo(a + b));
+        Arrays.sort(arr, (a, b) -> (b + a).compareTo(a + b));
 
         StringBuilder sb = new StringBuilder();
         for (String s : arr) {
@@ -102,6 +102,7 @@ public class LargestNumber {
     }
 
     public static void main(String[] args) {
-     solve(new int[]{5,4,2});
+
+        System.out.println(largestNumber(Arrays.asList(10,2)));
     }
 }

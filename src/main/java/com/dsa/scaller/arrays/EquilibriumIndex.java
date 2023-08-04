@@ -1,6 +1,7 @@
 package com.dsa.scaller.arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EquilibriumIndex {
     //You are given an array A of integers of size N.
@@ -54,7 +55,7 @@ public class EquilibriumIndex {
     //2                   3                                   0
     //Thus, there is no such index.
 
-    public int solve(ArrayList<Integer> A) {
+    public static int solve(ArrayList<Integer> A) {
         int n = A.size();
         ArrayList<Long> prefix = new ArrayList<>();
         prefix.add((long) A.get(0));
@@ -77,7 +78,7 @@ public class EquilibriumIndex {
         return ans;
     }
 
-    public int solve2(ArrayList<Integer> A) {
+    public static int solve2(ArrayList<Integer> A) {
         int n = A.size();
         long[] prefixSum = new long[n];
         prefixSum[0] = A.get(0);
@@ -140,7 +141,10 @@ public class EquilibriumIndex {
     }
 
     public static void main(String[] args) {
-        System.out.println(pivotIndex(new int[]{1,7,3,6,5,6}));
+      //  System.out.println(pivotIndex(new int[]{1,7,3,6,5,6}));
+        //System.out.println(pivotIndex(new int[]{-3,2,4,-1}));
+        System.out.println(pivotIndex(new int[]{7, 1, 5, 2, -4, 3, 0}));
+        //System.out.println(solve(new ArrayList<>(Arrays.asList(7, 1, 5, 2, -4, 3, 0))));
     }
 
 }
