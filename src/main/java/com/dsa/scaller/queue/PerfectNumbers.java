@@ -5,29 +5,88 @@ import java.util.Queue;
 
 public class PerfectNumbers {
 
-    public int solve(int A) {
-        if(A<=2) return A;
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(1);
-        queue.add(2);
-        int i=3;
-       // System.out.print(queue);
+    //Problem Description
+    //Given an integer A, you have to find the Ath Perfect Number.
+    //
+    //A Perfect Number has the following properties:
+    //
+    //It comprises only 1 and 2.
+    //The number of digits in a Perfect number is even.
+    //It is a palindrome number.
+    //For example, 11, 22, 112211 are Perfect numbers, where 123, 121, 782, 1 are not.
+    //
+    //
+    //
+    //Problem Constraints
+    //1 <= A <= 100000
+    //
+    //
+    //
+    //Input Format
+    //The only argument given is an integer A.
+    //
+    //
+    //
+    //Output Format
+    //Return a string that denotes the Ath Perfect Number.
+    //
+    //
+    //
+    //Example Input
+    //Input 1:
+    //
+    // A = 2
+    //Input 2:
+    //
+    // A = 3
+    //
+    //
+    //Example Output
+    //Output 1:
+    //
+    // 22
+    //Output 2:
+    //
+    // 1111
+    //
+    //
+    //Example Explanation
+    //Explanation 1:
+    //
+    //First four perfect numbers are:
+    //1. 11
+    //2. 22
+    //3. 1111
+    //4. 1221
+    //Return the 2nd Perfect number.
+    //Explanation 2:
+    //
+    //First four perfect numbers are:
+    //1. 11
+    //2. 22
+    //3. 1111
+    //4. 1221
+    //Return the 3rd Perfect number.
 
-        while (i<=A){
-            int data = queue.remove();
-            int a= data * 10+1;
-            int b = a+1;
-            queue.add(a);
-            queue.add(b);
-          //  System.out.print(a + ", "+b+" ,");
 
-            if(i==A) return a;
-            if(i+1==A) return b;
-            i+=2;
+
+    public String solve(int A) {
+        Queue<String> queue = new LinkedList<>();
+        queue.add("11");
+        queue.add("22");
+
+        for (int i = 1; i < A; i++) {
+            String current = queue.poll();
+            int n = current.length();
+
+            String first = current.substring(0, n / 2) + "11" + current.substring(n / 2);
+            String second = current.substring(0, n / 2) + "22" + current.substring(n / 2);
+            queue.add(first);
+            queue.add(second);
         }
-
-        return 0;
+        return queue.isEmpty() ? "" : queue.poll();
     }
+
     public static void main(String[] args) {
         PerfectNumbers perfectNumber = new PerfectNumbers();
         System.out.println(perfectNumber.solve(3));
