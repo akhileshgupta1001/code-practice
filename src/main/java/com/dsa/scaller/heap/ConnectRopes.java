@@ -91,6 +91,10 @@ public class ConnectRopes {
     }
 
     public static void main(String[] args) {
+        String s1="5";
+        String s2="6";
+        s1= s1+s2;
+        System.out.println(s1);
         ConnectRopes connectRopes = new ConnectRopes();
         connectRopes.solve(new int[]{1, 2, 3, 4, 5});
     }
