@@ -56,8 +56,8 @@ public class PrintLCS {
 
     // driver program
     public static void main(String[] args) {
-        String X = "AGGTAB";
-        String Y = "GXTXAYB";
+        String X = "ACBEF";
+        String Y = "ABCDAF";
         int m = X.length();
         int n = Y.length();
         printLCS(X, Y, m, n);

@@ -1,5 +1,7 @@
 package com.dsa.geeksforgeek.dyanmic.programing;
 
+import java.util.Stack;
+
 //Longest Increasing Subsequence
 public class LIS {
 
@@ -18,6 +20,7 @@ Output: 1
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
         int lis[] = new int[n];
+         Stack<Integer> stack = new Stack<>();
 
         lis[0] = 1;
         for (int i = 1; i < n; i++) {

@@ -26,7 +26,7 @@ rose -> ros (remove 'e')
         return minDistance(word1,word2,word1.length(),word2.length());
     }
 
-    public static int minDistanceUisngDp(String word1, String word2) {
+    public static int minDistanceUsingDp(String word1, String word2) {
         int m=word1.length();
         int n= word2.length();
         int[][] dp = new int[m+1][n+1];
@@ -52,6 +52,6 @@ rose -> ros (remove 'e')
 
 
     public static void main(String[] args) {
-        System.out.println(minDistanceUisngDp("horse","ros"));
+        System.out.println(minDistanceUsingDp("horse","ros"));
     }
 }
