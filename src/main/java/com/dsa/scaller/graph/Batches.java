@@ -242,3 +242,132 @@ public class Batches {
     }
 
 }
+class Solution {
+    public int solve(int A, int[][] B) {
+        return new Kruskal(A, B).find();
+        //return new Prim(A, B).find();
+    }
+}
+
+//T.C (ElogE + E) S.C(N+E)
+class Kruskal {
+    int[][] graph;
+    DSU dsu;
+    final int mod = 1000000007;
+
+    public Kruskal(int n, int[][] graph) {
+        this.graph = graph;
+
+        //Sort the graph based on weights
+        Arrays.sort(graph, Comparator.comparingInt(a -> a[2]));
+
+        dsu = new DSU(n);
+    }
+
+    public int find() {
+        int ans = 0;
+        for (int[] ints : graph) {
+            int u = ints[0],
+                    v = ints[1],
+                    w = ints[2];
+            if (dsu.union(u, v)) ans = (ans + w)%mod;
+        }
+        return ans;
+    }
+
+    class DSU {
+        private final int[] size;
+        private final int[] parents;
+
+        public DSU(int N) {
+            this.size = new int[N+1];
+            Arrays.fill(this.size, 1);
+
+            this.parents = new int[N+1];
+            for(int i = 0; i < this.parents.length; i++){
+                this.parents[i] = i;
+            }
+        }
+
+        public int getRoot(int x) {
+            if(this.parents[x] == x) return  x;
+            return this.parents[x] = getRoot(parents[x]);
+        }
+
+        public boolean union(int x, int y) {
+            int rx = getRoot(x);
+            int ry = getRoot(y);
+
+            if (rx == ry) return false;
+
+            if (this.size[rx] <= this.size[ry]) {
+                this.parents[rx] = ry;
+                this.size[ry] += this.size[rx];
+            } else {
+                this.parents[ry] = rx;
+                this.size[rx] += this.size[ry];
+            }
+
+            return true;
+        }
+    }
+}
+
+//T.C (ElogE) S.C(N+E)
+class Prim {
+    ArrayList<Pair>[] graph;
+    boolean[] visited;
+
+    final int mod = 1000000007;
+
+    public Prim(int n, int[][] graph) {
+        this.graph = buildGraph(n, graph);
+        this.visited = new boolean[n+1];
+    }
+
+    private ArrayList<Pair>[] buildGraph (int n, int[][] graph) {
+        ArrayList<Pair>[] g = new ArrayList[n+1];
+        for(int i = 0; i < g.length; i++) {
+            g[i] = new ArrayList<>();
+        }
+        for(int[] i : graph){
+            int u = i[0], v = i[1], w = i[2];
+            g[u].add(new Pair(v, w));
+            g[v].add(new Pair(u, w));
+        }
+        return g;
+    }
+
+    public int find() {
+        int ans = 0;
+        PriorityQueue<Pair> minHeap = new PriorityQueue<>();
+        minHeap.offer(new Pair(1, 0));
+        while (!minHeap.isEmpty()) {
+            Pair x = minHeap.poll();
+            if (this.visited[x.node]) continue;
+            this.visited[x.node] = true;
+            ans = (ans + x.weight)%mod;
+            for(Pair nbr : this.graph[x.node]) {
+                if(!this.visited[nbr.node]) {
+                    minHeap.offer(nbr);
+                }
+            }
+        }
+        return ans;
+    }
+
+    class Pair implements Comparable<Pair>{
+        int node;
+        int weight;
+
+        public Pair(int node, int weight) {
+            this.node = node;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Pair o) {
+            return this.weight - o.weight;
+        }
+    }
+}
