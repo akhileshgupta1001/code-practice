@@ -101,6 +101,49 @@ public class DungeonPrincess {
         return ans[0][0];
     }
 
+    public int calculateMinimumHP2(int[][] A) {
+        int n = A.length;
+        int m = A[0].length;
+        int[][] memo = new int[n][m]; // Create a memoization array to store computed results
+
+        return calculateMinimumHPRecursion(A, 0, 0, memo); // Start the recursion from the top-left corner (0, 0)
+    }
+
+    private int calculateMinimumHPRecursion(int[][] A, int i, int j, int[][] memo) {
+        int n = A.length;
+        int m = A[0].length;
+
+        if (i == n - 1 && j == m - 1) {
+            // If we are at the bottom-right corner, return the minimum HP needed to reach here
+            // Ensure that the HP is at least 1 to stay alive
+            return Math.max(1 - A[i][j], 1);
+        }
+
+        if (memo[i][j] != 0) {
+            // If the result for this cell is already computed, return it from memo
+            return memo[i][j];
+        }
+
+        int x;
+
+        if (i == n - 1) {
+            // If we are at the last row, we can only move right
+            x = calculateMinimumHPRecursion(A, i, j + 1, memo);
+        } else if (j == m - 1) {
+            // If we are at the last column, we can only move down
+            x = calculateMinimumHPRecursion(A, i + 1, j, memo);
+        } else {
+            // If not at the last row or column, consider both right and down movements
+            int right = calculateMinimumHPRecursion(A, i, j + 1, memo);
+            int down = calculateMinimumHPRecursion(A, i + 1, j, memo);
+            x = Math.min(right, down); // Choose the minimum HP needed among right and down movements
+        }
+
+        memo[i][j] = Math.max(x - A[i][j], 1); // Store the result in memo and ensure HP is at least 1
+        return memo[i][j];
+    }
+
+
     public static void main(String[] args) {
         int[][] matrix = {
                 {-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100},
