@@ -99,4 +99,44 @@ public class PalindromePartitioningMinimumCuts {
         }
         return cuts[n - 1]; // Return the minimum cuts for the entire string.
     }
+
+    public int minCut2(String A) {
+        int n = A.length();
+        int[][] dp = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+
+        return minPartition(A, 0, n - 1, dp);
+    }
+
+    boolean isPalindrome(String str, int start, int end) {
+        while (start < end) {
+            if (str.charAt(start) != str.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+
+    int minPartition(String A, int start, int end, int[][] dp) {
+        if (start >= end || isPalindrome(A, start, end)) {
+            return 0;
+        }
+
+        if (dp[start][end] != -1) return dp[start][end];
+
+        int result = Integer.MAX_VALUE;
+
+        for (int k = start; k < end; k++) {
+            int cut = minPartition(A, start, k, dp) + 1 + minPartition(A, k + 1, end, dp);
+            result = Math.min(cut, result);
+        }
+
+        dp[start][end] = result; // Update dp table outside the loop
+        return dp[start][end];
+    }
 }
