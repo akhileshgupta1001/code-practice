@@ -121,4 +121,50 @@ public class LevelOrder {
         ans.add(subAns);
         return ans;
     }
+
+    public static void main(String[] args) {
+        // Create a sample binary tree
+        TreeNode root1 = new TreeNode(3);
+        root1.left = new TreeNode(9);
+        root1.right = new TreeNode(20);
+        root1.right.left = new TreeNode(15);
+        root1.right.right = new TreeNode(7);
+
+        TreeNode root2 = new TreeNode(1);
+        root2.left = new TreeNode(6);
+        root2.right = new TreeNode(2);
+        root2.right.left = new TreeNode(3);
+
+        LevelOrder levelOrder = new LevelOrder();
+
+        // Using solve method
+        ArrayList<ArrayList<Integer>> result1 = levelOrder.solve2(root1);
+        ArrayList<ArrayList<Integer>> result2 = levelOrder.solve2(root2);
+
+        // Print the results
+        System.out.println("Level Order Traversal 1:");
+        for (ArrayList<Integer> row : result1) {
+            System.out.println(row);
+        }
+
+        System.out.println("Level Order Traversal 2:");
+        for (ArrayList<Integer> row : result2) {
+            System.out.println(row);
+        }
+
+        // Using solve2 method
+        ArrayList<ArrayList<Integer>> result3 = levelOrder.solve2(root1);
+        ArrayList<ArrayList<Integer>> result4 = levelOrder.solve2(root2);
+
+        // Print the results
+        System.out.println("Level Order Traversal 1 (solve2):");
+        for (ArrayList<Integer> row : result3) {
+            System.out.println(row);
+        }
+
+        System.out.println("Level Order Traversal 2 (solve2):");
+        for (ArrayList<Integer> row : result4) {
+            System.out.println(row);
+        }
+    }
 }

@@ -56,34 +56,39 @@ public class MergeTwoSortedLists {
 
 
     public ListNode mergeTwoLists(ListNode A, ListNode B) {
-        ListNode h1 = A;
-        ListNode h2 = B;
-        ListNode head = new ListNode(-1);
+        ListNode h1 = A; // Initialize a pointer h1 to the head of the first list
+        ListNode h2 = B; // Initialize a pointer h2 to the head of the second list
+        ListNode head = new ListNode(-1); // Create a dummy node to serve as the head of the merged list
 
-        if (h1 == null) return h2;
-        if (h2 == null) return h1;
+        if (h1 == null) return h2; // If the first list is empty, return the second list
+        if (h2 == null) return h1; // If the second list is empty, return the first list
 
-        if (h1.val <= h2.val) {
-            head = h1;
-            h1 = h1.next;
+        if (h1.val <= h2.val) { // Compare the values of the heads of the two lists
+            head = h1; // Set the head of the merged list to the smaller value node
+            h1 = h1.next; // Move h1 to the next node in the first list
         } else {
-            head = h2;
-            h2 = h2.next;
+            head = h2; // Set the head of the merged list to the smaller value node
+            h2 = h2.next; // Move h2 to the next node in the second list
         }
-        ListNode temp = head;
+        ListNode temp = head; // Create a temporary pointer to keep track of the current node in the merged list
+
         while (h1 != null && h2 != null) {
             if (h1.val <= h2.val) {
-                temp.next = h1;
-                h1 = h1.next;
+                temp.next = h1; // Connect the current node in the merged list to the smaller value node from the first list
+                h1 = h1.next; // Move h1 to the next node in the first list
             } else {
-                temp.next = h2;
-                h2 = h2.next;
+                temp.next = h2; // Connect the current node in the merged list to the smaller value node from the second list
+                h2 = h2.next; // Move h2 to the next node in the second list
             }
-            temp = temp.next;
+            temp = temp.next; // Move the temporary pointer to the newly added node in the merged list
         }
-        if (h1 == null) temp.next = h2;
-        else temp.next = h1;
 
-        return head;
+        // After the loop, one of the lists may have remaining nodes
+        if (h1 == null)
+            temp.next = h2; // If the first list is exhausted, connect the merged list to the remaining nodes of the second list
+        else
+            temp.next = h1; // If the second list is exhausted, connect the merged list to the remaining nodes of the first list
+
+        return head; // Return the head of the merged list
     }
 }

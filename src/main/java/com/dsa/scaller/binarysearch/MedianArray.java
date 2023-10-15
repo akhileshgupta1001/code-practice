@@ -1,5 +1,6 @@
 package com.dsa.scaller.binarysearch;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MedianArray {
@@ -58,36 +59,54 @@ public class MedianArray {
     //
     // The median of both the sorted arrays will be (2+3)/2 = 2.5.
 
-    public double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
-        if (b.size() < a.size()) return findMedianSortedArrays(b, a);
-        int n1 = a.size();
-        int n2 = b.size();
 
-        int low = 0;
-        int high = n1;
-        while (low <= high) {
-            int count1 = low + (high - low) / 2;
-            int count2 = (n1 + n2 + 1) / 2 - count1;
+        public static double findMedianSortedArrays(final List<Integer> nums1, final List<Integer> nums2) {
+            // Check if the second list is shorter than the first, if so, swap them to ensure nums1 is always the shorter one.
+            if (nums2.size() < nums1.size()) return findMedianSortedArrays(nums2, nums1);
 
-            int left1 = count1 == 0 ? Integer.MIN_VALUE : a.get(count1 - 1);
-            int left2 = count2 == 0 ? Integer.MIN_VALUE : b.get(count2 - 1);
+            // Get the lengths of the two input lists.
+            int len1 = nums1.size();
+            int len2 = nums2.size();
 
-            int right1 = count1 == n1 ? Integer.MAX_VALUE : a.get(count1);
-            int right2 = count2 == n2 ? Integer.MAX_VALUE : b.get(count2);
+            // Initialize the search range for binary search on nums1.
+            int low = 0;
+            int high = len1;
 
-            if (left1 <= right2 && left2 <= right1) {
-                if ((n1 + n2) % 2 == 0) {
-                    return (Math.max(left1, left2) + Math.min(right1, right2)) / 2.0;
+            // Binary search loop to find the correct partition point in nums1.
+            while (low <= high) {
+                // Calculate the partition points in both nums1 and nums2.
+                int partition1 = low + (high - low) / 2;
+                int partition2 = (len1 + len2 + 1) / 2 - partition1;
+
+                // Calculate the elements on the left and right of the partitions.
+                int maxLeft1 = partition1 == 0 ? Integer.MIN_VALUE : nums1.get(partition1 - 1);
+                int maxLeft2 = partition2 == 0 ? Integer.MIN_VALUE : nums2.get(partition2 - 1);
+                int minRight1 = partition1 == len1 ? Integer.MAX_VALUE : nums1.get(partition1);
+                int minRight2 = partition2 == len2 ? Integer.MAX_VALUE : nums2.get(partition2);
+
+                // Check if the partitions are in the correct position.
+                if (maxLeft1 <= minRight2 && maxLeft2 <= minRight1) {
+                    // If the total number of elements is even, return the average of the maximum left and minimum right elements.
+                    if ((len1 + len2) % 2 == 0) {
+                        return (Math.max(maxLeft1, maxLeft2) + Math.min(minRight1, minRight2)) / 2.0;
+                    } else {
+                        // If the total number of elements is odd, return the maximum element on the left.
+                        return Math.max(maxLeft1, maxLeft2);
+                    }
+                } else if (maxLeft1 > minRight2) {
+                    // If the partitions are not in the correct position, adjust the search range.
+                    high = partition1 - 1;
                 } else {
-                    return Math.max(left1, left2);
+                    low = partition1 + 1;
                 }
-            } else if (left1 > right2) {
-                high = count1 - 1;
-            } else {
-                low = count1 + 1;
             }
 
+            // If no solution is found, return 0.0.
+            return 0.0;
         }
-        return 0.0;
+
+    public static void main(String[] args) {
+        findMedianSortedArrays(Arrays.asList(1,4,5),Arrays.asList(2,3));
     }
+
 }
