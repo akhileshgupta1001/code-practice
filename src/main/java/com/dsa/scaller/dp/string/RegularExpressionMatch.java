@@ -99,6 +99,40 @@ public class RegularExpressionMatch {
         return dp[n][m] ? 1 : 0;
     }
 
+    public boolean isMatchRecursive(String A, String B, int n, int m, Boolean[][] memo) {
+        // If the result for this subproblem is already computed, return it.
+        if (memo[n][m] != null) {
+            return memo[n][m];
+        }
+
+        // Base cases
+        if (n == 0 && m == 0) {
+            // Both strings are empty, and they match.
+            memo[n][m] = true;
+        } else if (n == 0) {
+            // String A is empty, and we encounter '*'. Check the previous value with '*' in string B.
+            memo[n][m] = (B.charAt(m - 1) == '*') && isMatchRecursive(A, B, n, m - 1, memo);
+        } else if (m == 0) {
+            // String B is empty, and there is no match unless string A is also empty.
+            memo[n][m] = false;
+        } else {
+            if (A.charAt(n - 1) == B.charAt(m - 1) || B.charAt(m - 1) == '?') {
+                // If the current characters match or B has a '?', check the previous diagonal value.
+                memo[n][m] = isMatchRecursive(A, B, n - 1, m - 1, memo);
+            } else if (B.charAt(m - 1) == '*') {
+                // If B has '*', it can represent an empty string or one or more characters in A.
+                memo[n][m] = isMatchRecursive(A, B, n - 1, m, memo) || isMatchRecursive(A, B, n, m - 1, memo);
+            } else {
+                // If characters don't match and B is not '*', there is no match.
+                memo[n][m] = false;
+            }
+        }
+
+        // Return the computed result for this subproblem.
+        return memo[n][m];
+    }
+
+
     // Wrapper function to initialize dp array and call the main isMatch function.
     public int isMatch(final String A, final String B) {
         int n = A.length();
