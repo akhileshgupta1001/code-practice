@@ -2,7 +2,7 @@ package com.dsa.scaller.linkedlist;
 
 import java.util.ArrayList;
 
-public class KReverseLL {
+public class    KReverseLL {
     //Problem Description
     //Given a singly linked list A and an integer B, reverse the nodes of the list B at a time and return the modified linked list.
     //

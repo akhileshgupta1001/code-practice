@@ -99,7 +99,7 @@ public class Knapsack {
     //Time Complexity: O(N * W). As redundant calculations of states are avoided.
     //Auxiliary Space: O(N * W) + O(N). The use of a 2D array data structure for storing intermediate states and O(N) auxiliary stack space(ASS) has been used for recursion stack
     public static int getMaxKnapsackProblemUsingMemorization(int[] weight, int[] value,int[][] dp,int maxWeight,int size){
-
+         Arrays.stream(dp).forEach(data-> Arrays.fill(data,-1));
         if(maxWeight==0|| size==0) return 0;
         if(dp[size][maxWeight] != -1) return dp[size][maxWeight];
 
@@ -173,7 +173,27 @@ public class Knapsack {
         int wt[] = { 5, 4, 6, 3 };
         int W = 10;
         int n = 4;
-        System.out.println(getMaxKnapsackProblemUsingDP(wt, val,W ,n));
-        //getMaxKnapsackProblemUsingMemorization(wt,val,W,n);
+       // System.out.println(getMaxKnapsackProblemUsingDP(wt, val,W ,n));
+        System.out.println(solve(val, wt,W));
+
+       getMaxKnapsackProblemUsingMemorization(wt,val,W,n);
+    }
+
+    public static int knapsack(int[] value, int[] weight, int[][] dp, int W, int size){
+        if(size==0 || W==0){
+            return 0;
+        }
+        if(dp[size][W] != -1) return dp[size][W];
+        int val = knapsack(value,weight,dp,W,size-1);
+        if(W>=weight[size]){
+            val = Math.max(val,value[size]+knapsack(value,weight,dp,W-weight[size],size));
+        }
+        return  dp[size][W]= val;
+    }
+    public static int solve(int[] A, int[] B, int C) {
+        int[][] dp = new int[A.length+1][C+1];
+        Arrays.stream(dp).forEach(data-> Arrays.fill(data,-1));
+
+        return knapsack(A,B,dp,C,A.length);
     }
 }

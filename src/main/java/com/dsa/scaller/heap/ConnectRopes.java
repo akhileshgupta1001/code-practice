@@ -73,6 +73,7 @@ public class ConnectRopes {
         for(int i=0;i<A.length;i++){
             queue.add(A[i]);
         }
+        System.out.println(queue);
        int ans=0;
         while(!queue.isEmpty()){
             int sum=0;

@@ -74,4 +74,53 @@ public class RottenOranges {
         // Return the minimum number of minutes taken to rot all fresh oranges
         return minutes > 0 ? minutes - 1 : 0; // Subtract 1 because we start at minute 0
     }
+
+    class Pair{
+        int time;
+        int row;
+        int col;
+        public Pair(int row, int col, int time){
+            this.row=row;
+            this.col=col;
+            this.time=time;
+        }
+    }
+    public int solve(int[][] A) {
+        int n = A.length;
+        int m = A[0].length;
+        int[][] visited = new int[n][m];
+        Queue<Pair> queue= new LinkedList<>();
+        int countFresh=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(A[i][j]==2){
+                    queue.add(new Pair(i,j,0));
+                }
+                if(A[i][j]==1) countFresh++;
+            }
+        }
+        int[] dRow = new int[]{-1,0,1,0};
+        int[] dCol = new int[]{0,1,0,-1};
+        int totalTime =0;
+        int count =0;
+        while(!queue.isEmpty()){
+            Pair current = queue.poll();
+
+            for(int i=0;i<4;i++){
+                int r =dRow[i]+ current.row;
+                int c = dCol[i]+current.col;
+                totalTime = Math.max(totalTime,current.time);
+
+                if(r>=0 && r<n && c>=0 && c<m && visited[r][c]==0 && A[r][c]==1){
+                    visited[r][c]=1;
+                    A[r][c]=2;
+                    queue.add(new Pair(r,c,current.time+1));
+                    count++;
+                }
+            }
+        }
+        if(count != countFresh) return -1;
+
+        return totalTime;
+    }
 }

@@ -89,6 +89,7 @@ public class CycleDirectedGraph {
             int to = B.get(i).get(1);
             adj.get(from).add(to);
         }
+        System.out.println("Adj list" + adj);
 
         // Start DFS from node 1
         for (int i = 1; i <= A; i++) {
@@ -117,5 +118,36 @@ public class CycleDirectedGraph {
         }
         path[currentNode] = false; // Mark the current node as not on the current path
         return false;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        CycleDirectedGraph cycleDirectedGraph = new CycleDirectedGraph();
+
+        // Example 1
+        int A1 = 5;
+        ArrayList<ArrayList<Integer>> B1 = new ArrayList<>();
+        B1.add(new ArrayList<>(Arrays.asList(1, 2)));
+        B1.add(new ArrayList<>(Arrays.asList(4, 1)));
+        B1.add(new ArrayList<>(Arrays.asList(2, 4)));
+        B1.add(new ArrayList<>(Arrays.asList(3, 4)));
+        B1.add(new ArrayList<>(Arrays.asList(5, 2)));
+        B1.add(new ArrayList<>(Arrays.asList(1, 3)));
+        // System.out.println("Example 1: " + cycleDirectedGraph.solve(A1, B1)); // Output: 1
+
+        // Example 2
+        int A2 = 5;
+        ArrayList<ArrayList<Integer>> B2 = new ArrayList<>();
+        B2.add(new ArrayList<>(Arrays.asList(1, 2)));
+        B2.add(new ArrayList<>(Arrays.asList(2, 3)));
+        B2.add(new ArrayList<>(Arrays.asList(3, 4)));
+        B2.add(new ArrayList<>(Arrays.asList(4, 5)));
+        // System.out.println("Example 2: " + cycleDirectedGraph.solve(A2, B2)); // Output: 0
+
+
+        int A3 = 2;
+        ArrayList<ArrayList<Integer>> B3 = new ArrayList<>();
+        B2.add(new ArrayList<>(Arrays.asList(1, 2)));
+        System.out.println("Example 3: " + cycleDirectedGraph.solve(A3, B3)); // Output: 0
     }
 }

@@ -1,5 +1,6 @@
 package com.dsa.scaller.twopointer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.TreeMap;
@@ -84,6 +85,7 @@ public class ThreeSum {
             int k = A.length - 1;
             while (j < k) {
                 int sum = A[i] + A[j] + A[k];
+                ArrayList<Integer> subAns =new ArrayList<>(Arrays.asList(A[i],A[j],A[k]));
                 if (Math.abs(sum - B) < diff) {
                     diff = Math.abs(sum - B);
                     ans = sum;

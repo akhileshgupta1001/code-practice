@@ -107,10 +107,12 @@ public class AllocateBooks {
 
 
         while (minPages <= maxPages) {
-            int currentAllocation = minPages + (maxPages - minPages) / 2;
+          //  int currentAllocation = minPages + (maxPages - minPages) / 2;
+            int currentAllocation = (minPages + maxPages)/2;
             if (isAllocationPossible(bookPages, totalStudents, currentAllocation)) {
                 result = currentAllocation;
                 maxPages = currentAllocation - 1;
+                System.out.println("Possible result : " +result);
             } else {
                 minPages = currentAllocation + 1;
             }
@@ -124,7 +126,57 @@ public class AllocateBooks {
         return allocateBooks(A, A.size(), B);
     }
 
+    public static boolean isAllocationPossible(int[] A, int toatlSutudent, int currentAlocation){
+        int studentCount =1;
+        int pageSum=0;
+
+        for(int i=0;i<A.length;i++){
+            if(pageSum+A[i]<=currentAlocation){
+                pageSum+=A[i];
+            }else{
+                studentCount++;
+                if(studentCount> toatlSutudent || A[i]>currentAlocation){
+                    return false;
+                }
+                pageSum=A[i];
+            }
+
+            if(studentCount> toatlSutudent){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static int books(int[] A, int B) {
+        int low =0;
+        int high = 0;
+        for(int i=0;i<A.length;i++){
+            high += A[i];
+        }
+        int totalStudent = B;
+        int res =-1;
+
+        while(low<=high){
+            int mid = (low + high)/2;
+
+            if(isAllocationPossible(A,totalStudent,mid)){
+                //System.out.println("Possible soultion : " +mid);
+                res = mid;
+                high = mid-1;
+                 System.out.println("Possible soultion : " +res);
+
+            }else{
+                low = mid+1;
+            }
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
-        System.out.println(books(new ArrayList<>(Arrays.asList(31,14,19,75)),12));
+       System.out.println(books(new ArrayList<>(Arrays.asList(31,14,19,75)),12));
+       // System.out.println(books(new ArrayList<>(Arrays.asList(12,34,67,90)),2));
+
+        System.out.println(books(new int[] {31,14,19,75},12));
     }
 }

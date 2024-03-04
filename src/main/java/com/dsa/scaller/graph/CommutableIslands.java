@@ -1,6 +1,7 @@
 package com.dsa.scaller.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -76,6 +77,7 @@ public class CommutableIslands {
             int from = bridge[0];
             int to = bridge[1];
             int cost = bridge[2];
+
             edges.add(new GraphEdge(from, to, cost));
         }
 
@@ -83,6 +85,7 @@ public class CommutableIslands {
         Collections.sort(edges);
 
         int[] parent = new int[A + 1];
+
         for (int i = 1; i <= A; i++) {
             parent[i] = i; // Initialize each island as its own parent
         }

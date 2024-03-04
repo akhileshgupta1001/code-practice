@@ -108,7 +108,7 @@ public class MaxSumWithoutAdjacentElements {
     }
 
     // Iterative
-    public int maxsum(ArrayList<Integer> a) {
+    public static int maxsum(ArrayList<Integer> a) {
         int n = a.size();
         int[] dp = new int[n];
         if (n == 1) {
@@ -123,7 +123,7 @@ public class MaxSumWithoutAdjacentElements {
     }
 
     //With Carry forword
-    public int maxsum3(ArrayList<Integer> a) {
+    public static int maxsum3(ArrayList<Integer> a) {
         int n = a.size();
         if (n == 1) {
             return a.get(0);
@@ -140,6 +140,7 @@ public class MaxSumWithoutAdjacentElements {
     }
 
     public static void main(String[] args) {
+        System.out.println(maxsum3(new ArrayList<>(Arrays.asList(9,1,8,10))));
         List<Integer> a1 = Arrays.asList(16, 5, 54, 55, 36, 82, 61, 77, 66, 61);
         List<Integer> b1 = Arrays.asList(1, 30, 36, 70, 9, 37, 1, 11, 68, 14);
         ArrayList<ArrayList<Integer>> input = new ArrayList<>();
