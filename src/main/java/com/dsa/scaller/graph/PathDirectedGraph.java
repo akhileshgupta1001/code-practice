@@ -95,6 +95,10 @@ public class PathDirectedGraph {
             graph[from].add(to);
         }
 
+       for( ArrayList<Integer> data : graph){
+           System.out.println("Data : "+ data);
+        }
+
         Queue<Integer> queue = new LinkedList<>();
         queue.add(1); // Start from node 1
         isVisited[1] = true;

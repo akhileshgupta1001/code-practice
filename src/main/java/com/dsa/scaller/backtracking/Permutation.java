@@ -1,6 +1,7 @@
 package com.dsa.scaller.backtracking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +67,8 @@ public class Permutation {
     //Example Explanation
     //All the possible permutation of array [1, 2, 3].
 
+
+
     ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
 
     public void permuteOfNumber(ArrayList<Integer> A, ArrayList<Integer> subAns, boolean isVisited[], int index) {
@@ -100,8 +103,11 @@ public class Permutation {
         return ans;
     }
 
+
     public static void main(String[] args) {
-        permutationOfString("ABC",new boolean[3],new char[3],0);
+       // permutationOfString("ABC",new boolean[3],new char[3],0);
+        Permutation permutation = new Permutation();
+        permutation.permute(new ArrayList<>(Arrays.asList(1,2,3)));
 
         ArrayList<Integer> ans = new ArrayList<>();
 

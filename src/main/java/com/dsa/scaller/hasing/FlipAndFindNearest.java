@@ -1,6 +1,7 @@
 package com.dsa.scaller.hasing;
 
 import java.util.ArrayList;
+import java.util.Stack;
 import java.util.TreeSet;
 
 public class FlipAndFindNearest {
@@ -118,4 +119,78 @@ public class FlipAndFindNearest {
         }
         return result;
     }
+
+    public static int[] nearestOnes(String A, int[][] B) {
+        int n = A.length();
+        int[] result = new int[B.length];
+
+        Stack<Integer> leftStack = new Stack<>();
+        Stack<Integer> rightStack = new Stack<>();
+
+        int leftOne = -1;
+        int rightOne = n;
+
+        // Process the input string A and build the leftStack and rightStack
+        for (int i = 0; i < n; i++) {
+            if (A.charAt(i) == '1') {
+                leftOne = i;
+            }
+            leftStack.push(leftOne);
+        }
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (A.charAt(i) == '1') {
+                rightOne = i;
+            }
+            rightStack.push(rightOne);
+        }
+
+        System.out.println("Left stack : "+leftStack);
+        System.out.println("Right stack : "+rightStack);
+
+
+        for (int i = 0; i < B.length; i++) {
+            int queryType = B[i][0];
+            int x = B[i][1];
+
+            if (queryType == 1) {
+                // Flip the value at index x
+                char[] AChars = A.toCharArray();
+                AChars[x - 1] = (AChars[x - 1] == '0') ? '1' : '0';
+                A = new String(AChars);
+            } else {
+                // Find the nearest 1 to the left and right of index x
+                int leftDistance = x - leftStack.get(x - 1);
+                int rightDistance = rightStack.get(x - 1) - x;
+
+                if (leftDistance <= rightDistance) {
+                    result[i] = leftStack.get(x - 1) + 1;
+                } else {
+                    result[i] = rightStack.get(x - 1) + 1;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String A1 = "10010";
+        int[][] B1 = {{1, 2}, {2, 3}};
+        int[] output1 = nearestOnes(A1, B1);
+        for (int num : output1) {
+            System.out.print(num + " "); // Output: 2
+        }
+
+        System.out.println();
+
+        String A2 = "010000100";
+        int[][] B2 = {{2, 5}, {1, 7}, {2, 9}};
+        int[] output2 = nearestOnes(A2, B2);
+        for (int num : output2) {
+            System.out.print(num + " "); // Output: 7 2
+        }
+    }
+
+
 }

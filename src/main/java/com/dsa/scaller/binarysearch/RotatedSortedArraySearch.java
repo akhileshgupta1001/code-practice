@@ -58,51 +58,46 @@ public class RotatedSortedArraySearch {
     //Target 5 is found at index 3 in A.
 
     // This solution is work when element is not duplicate here
-    public int search(final int[] A, int B) {
-        // This method searches for an integer 'B' in a rotated (circularly shifted) sorted array 'A'.
-        // It returns the index of 'B' in 'A' or -1 if 'B' is not found.
+    public int search(int[] nums, int target) {
+        // Initialize the start and end pointers for the binary search.
+        int start = 0;
+        int end = nums.length - 1;
 
-        int low = 0;
-        int high = A.length - 1;
+        // Start a while loop that continues as long as start is less than or equal to end.
+        while (start <= end) {
+            // Calculate the middle index.
+            int mid = start + (end - start) / 2;
 
-        // Initialize 'low' to the start of the array and 'high' to the end of the array.
-
-        while (low <= high) {
-            // Start a binary search within the current range.
-
-            int mid = low + (high - low) / 2;
-            // Calculate the middle index within the current range.
-
-            if (A[mid] == B)
+            // Check if the element at the middle index is equal to the target.
+            if (nums[mid] == target) {
+                // If it is, return the index of the target.
                 return mid;
-            // If the middle element is equal to 'B', we have found 'B', so return its index.
+            }
 
-            // Right half sorted
-            if (A[mid] <= A[high]) {
-                // Check if the right half of the current range is sorted.
-
-                if (B > A[mid] && B <= A[high]) {
-                    low = mid + 1;
+            // Check if the left half of the current range is sorted (no rotation).
+            if (nums[start] <= nums[mid]) {
+                // If it is, check if the target is within this sorted half.
+                if (nums[start] <= target && target <= nums[mid]) {
+                    // If the target is within this range, update the 'end' pointer to mid - 1.
+                    end = mid - 1;
                 } else {
-                    high = mid - 1;
+                    // If the target is not within this range, update the 'start' pointer to mid + 1.
+                    start = mid + 1;
                 }
-                // If 'B' is within the sorted right half, update 'low' accordingly,
-                // otherwise, update 'high' to search in the left half.
             } else {
-                // Left half sorted (since the right half is not sorted).
-
-                if (B >= A[low] && B < A[mid]) {
-                    high = mid - 1;
+                // If the left half is not sorted, then the right half must be sorted.
+                // Check if the target is within the sorted right half.
+                if (nums[mid] <= target && target <= nums[end]) {
+                    // If the target is within this range, update the 'start' pointer to mid + 1.
+                    start = mid + 1;
                 } else {
-                    low = mid + 1;
+                    // If the target is not within this range, update the 'end' pointer to mid - 1.
+                    end = mid - 1;
                 }
-                // If 'B' is within the sorted left half, update 'high' to search in the left half,
-                // otherwise, update 'low' to search in the right half.
             }
         }
 
-        // If the loop exits without finding 'B', return -1 to indicate that 'B' is not in the array.
-
+        // If the target is not found in the array, return -1.
         return -1;
     }
 
@@ -128,6 +123,7 @@ public class RotatedSortedArraySearch {
             if (nums[mid] > nums[high]) {
                 low = mid + 1;
             } else {
+
                 high = mid;
             }
         }
@@ -154,31 +150,32 @@ public class RotatedSortedArraySearch {
 
 
     public static boolean searchDuplicate(int[] nums, int target) {
-        int low = 0;
-        int high = nums.length - 1;
+        int start = 0;
+        int end = nums.length - 1;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
-
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
             if (nums[mid] == target) {
                 return true;
             }
 
-            // Handle duplicate values by adjusting low and high
-            if (nums[low] == nums[mid] && nums[mid] == nums[high]) {
-                low++;
-                high--;
-            } else if (nums[low] <= nums[mid]) {
-                if (nums[low] <= target && target < nums[mid]) {
-                    high = mid - 1;
+            if (nums[start] == nums[mid] && nums[mid] == nums[end]) {
+                start++;
+                end--;
+                continue;
+            }
+
+            if (nums[start] <= nums[mid]) {
+                if (nums[start] <= target && target <= nums[mid]) {
+                    end = mid - 1;
                 } else {
-                    low = mid + 1;
+                    start = mid + 1;
                 }
             } else {
-                if (nums[mid] < target && target <= nums[high]) {
-                    low = mid + 1;
+                if (nums[mid] <= target && target <= nums[end]) {
+                    start = mid + 1;
                 } else {
-                    high = mid - 1;
+                    end = mid - 1;
                 }
             }
         }

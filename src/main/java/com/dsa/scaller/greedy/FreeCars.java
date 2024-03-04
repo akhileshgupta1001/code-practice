@@ -1,5 +1,6 @@
 package com.dsa.scaller.greedy;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.PriorityQueue;
@@ -80,6 +81,7 @@ public class FreeCars {
         }
         Collections.sort(jobs, (a, b) -> a.startTime - b.startTime);
         PriorityQueue<Integer> queue = new PriorityQueue<>();
+
 
         int time = 0;
         for (int i = 0; i < A.length; i++) {

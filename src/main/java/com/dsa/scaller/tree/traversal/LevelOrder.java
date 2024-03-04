@@ -65,6 +65,7 @@ public class LevelOrder {
     // Return the 2D array. Each row denotes the traversal of each level.
 
     public ArrayList<ArrayList<Integer>> solve(TreeNode A) {
+        Scanner sc = new Scanner(System.in);
         ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
         if (A == null)
             return ans;

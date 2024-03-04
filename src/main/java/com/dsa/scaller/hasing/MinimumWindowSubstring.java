@@ -11,6 +11,7 @@ public class MinimumWindowSubstring {
             targetMap.put(c, targetMap.getOrDefault(c, 0) + 1);
         }
 
+
         int left = 0; // Left pointer of the window
         int count = 0; // Count of characters in B found in the current window
         int minLength = Integer.MAX_VALUE; // Length of the minimum window found so far
@@ -18,6 +19,7 @@ public class MinimumWindowSubstring {
 
         for (int right = 0; right < A.length(); right++) {
             char c = A.charAt(right);
+
 
             // Update the count of character c in the current window
             if (targetMap.containsKey(c)) {

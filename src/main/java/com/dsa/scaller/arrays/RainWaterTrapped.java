@@ -62,8 +62,47 @@ public class RainWaterTrapped {
         for (int i = 0; i < n; i++) {
             leftMax = Math.max(leftMax, A.get(i));
             ans = ans + Math.min(rightMax[i], leftMax) - A.get(i);
-
         }
         return ans;
+    }
+
+    public int trap(final int[] heights) {
+        // Initialize left and right pointers to the beginning and end of the heights array.
+        int leftIndex = 0;
+        int rightIndex = heights.length - 1;
+
+        // Move the left pointer until it finds a bar higher than the next one or until it reaches the right pointer.
+        while (leftIndex < rightIndex && heights[leftIndex] <= heights[leftIndex + 1]) leftIndex++;
+        // Move the right pointer until it finds a bar higher than the previous one or until it reaches the left pointer.
+        while (leftIndex < rightIndex && heights[rightIndex] <= heights[rightIndex - 1]) rightIndex--;
+
+        // Initialize the variable to hold the total amount of water trapped.
+        int waterTrapped = 0;
+
+        // Iterate until the left pointer surpasses the right pointer.
+        while (leftIndex < rightIndex) {
+            // Get the heights of the bars at the left and right pointers.
+            int leftHeight = heights[leftIndex];
+            int rightHeight = heights[rightIndex];
+
+            // If the left bar is lower or equal to the right one, calculate the trapped water on the left side.
+            if (leftHeight <= rightHeight) {
+                // Move the left pointer until a higher bar is found and accumulate trapped water.
+                while (leftIndex < rightIndex && leftHeight >= heights[leftIndex]) {
+                    waterTrapped += leftHeight - heights[leftIndex];
+                    leftIndex++;
+                }
+            }
+            // If the right bar is lower than the left one, calculate the trapped water on the right side.
+            else {
+                // Move the right pointer until a higher bar is found and accumulate trapped water.
+                while (leftIndex < rightIndex && rightHeight >= heights[rightIndex]) {
+                    waterTrapped += rightHeight - heights[rightIndex];
+                    rightIndex--;
+                }
+            }
+        }
+        // Return the total amount of water trapped between the bars.
+        return waterTrapped;
     }
 }
