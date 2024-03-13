@@ -1,7 +1,9 @@
 package com.dsa.scaller.binarysearch;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //Problem Description
 //Farmer John has built a new long barn with N stalls. Given an array of integers A of size N where each element of the array represents the location of the stall and an integer B which represents the number of cows.
@@ -77,6 +79,8 @@ public class AggressiveCows {
 
     // Main function to find the maximum minimum distance for 'k' cows in the stalls.
     public int aggressiveCows(List<Integer> stalls, int k) {
+        Map<Integer,Integer> map = new HashMap<>();
+
         Collections.sort(stalls); // Sort the stalls in ascending order.
         int s = 0; // Initialize the lower bound of the search range.
         int n = stalls.size(); // Get the total number of stalls.

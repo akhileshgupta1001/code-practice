@@ -1,6 +1,7 @@
 package com.dsa.scaller.arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class FirstMissingInteger {
@@ -63,9 +64,12 @@ public class FirstMissingInteger {
         for (int i = 0; i < A.size(); i++) {
             if (A.get(i) > 0 && A.get(i) <= A.size()) {
                 int pos = A.get(i) - 1;
+                System.out.println("Current index = "+pos+" , i = "+i+" , Array : "+A);
+
                 if (A.get(i) != A.get(pos)) {
                     Collections.swap(A, pos, i);
                     i--;
+                    System.out.println("Index i = "+i+" , Array : "+A);
                 }
             }
         }
@@ -76,6 +80,11 @@ public class FirstMissingInteger {
             }
         }
         return A.size() + 1;
+    }
+
+    public static void main(String[] args) {
+        FirstMissingInteger firstMissingInteger = new FirstMissingInteger();
+        firstMissingInteger.firstMissingPositive(new ArrayList<>(Arrays.asList(-5,3,10,8,1,2,-3,2)));
     }
 
 }

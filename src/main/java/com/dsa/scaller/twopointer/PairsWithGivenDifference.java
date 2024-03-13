@@ -84,4 +84,28 @@ public class PairsWithGivenDifference {
         }
         return hm.size();
     }
+
+    public int solve2(int[] A, int B) {
+        Arrays.sort(A);
+        int i=0;
+        int j=1;
+        int ans=0;
+        int n = A.length;
+        while(j<n){
+            int diff = A[j]-A[i];
+            if(i==j){
+                j++;
+                continue;
+            }
+            int x= A[i];
+            int y = A[j];
+            if(diff==B){
+                ans++;
+                while(i<n && A[i]==x) i++;
+                while(j<n && A[j]==y) j++;
+            }else if(diff<B) j++;
+            else i++;
+        }
+        return ans;
+    }
 }

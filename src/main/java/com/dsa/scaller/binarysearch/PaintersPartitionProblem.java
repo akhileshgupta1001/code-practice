@@ -71,7 +71,7 @@ public class PaintersPartitionProblem {
     // and painter 4 paints block 4, time taken = max(1, 8, 11, 3) = 11
     // ans = 11 % 10000003
 
-    // This method calculates the minimum time taken by a painter to paint boards.
+    // This method calculates the  minimum time taken by a painter to paint boards.
     int minimumTimeTakenByPainter(int A[], int T, int X) {
         int remainingTime = X; // Initialize remaining time with the total available time.
         int count = 0; // Initialize the count of painted boards.
