@@ -1,5 +1,8 @@
 package com.dsa.scaller.bitmanuplation;
 
+import java.util.Collections;
+import java.util.PriorityQueue;
+
 public class Anybasetodecimal {
     //Problem Description
     //You are given a number A. You are also given a base B. A is a number on base B.
@@ -51,6 +54,10 @@ public class Anybasetodecimal {
             A /= 10;
             power *= B;
         }
+        PriorityQueue<Integer>
+                queue= new PriorityQueue<>(Collections.reverseOrder());
+
         return ans;
     }
+
 }

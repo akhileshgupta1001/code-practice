@@ -1,5 +1,6 @@
 package com.dsa.scaller.arrays;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class BestTimetoBuyandSellStocksI {
@@ -45,7 +46,7 @@ public class BestTimetoBuyandSellStocksI {
     //
     //Buy the stock on day 0, and sell it on day 2.
 
-    public int maxProfit(final List<Integer> A) {
+    public static int maxProfit(final List<Integer> A) {
         if (A.size() == 0) return 0;
         int mxSoFar = 0;
         int minSoFar = A.get(0);
@@ -55,7 +56,42 @@ public class BestTimetoBuyandSellStocksI {
             int profit = A.get(i) - minSoFar;
             mxSoFar = Math.max(profit, mxSoFar);
         }
+        System.out.println("Max Profit : "+mxSoFar);
         return mxSoFar;
 
+    }
+
+    //maxProfit(new int[]{7,1,5,3,6,4});
+    public static int maxProfit(int[] prices) {
+        int buy=Integer.MAX_VALUE,sell=0;
+        for(int i=0;i<prices.length;i++){
+            buy=Math.min(buy,prices[i]);
+            System.out.println("i = "+i+" , Buy : "+buy+ " , current price = "+prices[i]+" ,  profit = "+(prices[i]-buy)+" ,  sell = "+Math.max(sell,prices[i]-buy));
+            sell=Math.max(sell,prices[i]-buy);
+        }
+        return sell;
+    }
+
+    public static int maxProfit2(final List<Integer> A) {
+        if (A.size() == 0) return 0;
+        int mxSoFar = 0;
+        int minSoFar = A.get(0);
+        int n = A.size();
+        for (int i = 0; i < n; i++) {
+            System.out.println("i = "+i +" ,MinPrice : Math.min ( "+minSoFar+ " , "+A.get(i)+" ) = "+Math.min(minSoFar, A.get(i)));
+            minSoFar = Math.min(minSoFar, A.get(i));
+            int profit = A.get(i) - minSoFar;
+            System.out.println("i = "+i +" ,Max Profit  : Math.max ( "+profit+ " , "+mxSoFar+" ) = "+Math.max(profit, mxSoFar)+" , Profit : "+profit);
+            mxSoFar = Math.max(profit, mxSoFar);
+            System.out.println("\n\n");
+        }
+        System.out.println("Max Profit : "+mxSoFar);
+        return mxSoFar;
+
+    }
+
+    public static void main(String[] args) {
+      //maxProfit2(Arrays.asList(1, 4, 5, 2, 4));
+        maxProfit(new int[]{7,1,5,3,6,4});
     }
 }

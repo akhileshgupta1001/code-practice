@@ -1,3 +1,5 @@
+package CompanyTes;
+
 public class MinimumElement {
 
 

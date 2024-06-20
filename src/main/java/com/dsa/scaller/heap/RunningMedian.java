@@ -1,6 +1,5 @@
 package com.dsa.scaller.heap;
 
-import sun.lwawt.macosx.CSystemTray;
 
 import java.util.*;
 

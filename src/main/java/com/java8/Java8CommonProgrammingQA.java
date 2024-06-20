@@ -33,7 +33,6 @@ public class Java8CommonProgrammingQA {
         // System.out.println(studentsByCity);
 
         // 3. Find all departments names
-
         List<String> deptNames = studentList.stream()
                 .map(Student::getDept)
                 .distinct()
@@ -60,15 +59,20 @@ public class Java8CommonProgrammingQA {
 
         Map<String, List<Student>> studentMap = studentList.stream()
                 .collect(Collectors.groupingBy(Student::getDept));
-        // System.out.println(studentMap);
+        System.out.println("*********************");
+         System.out.println(studentMap);
+        System.out.println("*********************");
 
 
         //6. Find the department who is having maximum number of students
+
         Map.Entry<String, Long> results = studentList.stream()
                 .collect(Collectors.groupingBy(Student::getDept, Collectors.counting()))
                 .entrySet().stream().max(Map.Entry.comparingByValue()).get();
 
+        System.out.println("*********************");
         System.out.println(results);
+        System.out.println("*********************");
 
         //7. Find the average age of male and female students
 
@@ -77,14 +81,18 @@ public class Java8CommonProgrammingQA {
                         .groupingBy(Student::getGender,
                                 Collectors.averagingInt(Student::getAge)));
 
-        //System.out.println(avgStudents);
+        System.out.println("*********************Find the average age of male and female students*************");
+        System.out.println(avgStudents);
+        System.out.println("*********************");
 
         //8. Find the highest rank in each department
 
         Map<String, Optional<Student>> stdMap = studentList.stream()
                 .collect(Collectors.groupingBy(Student::getDept,
                         Collectors.minBy(Comparator.comparing(Student::getRank))));
-        // System.out.println(stdMap);
+        System.out.println("*********************Find the highest rank in each department*****************");
+        System.out.println(stdMap);
+        System.out.println("*********************");
 
         //9 .Find the student who has second rank
 

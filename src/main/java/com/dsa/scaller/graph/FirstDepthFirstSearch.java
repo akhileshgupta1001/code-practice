@@ -145,4 +145,8 @@ public class FirstDepthFirstSearch {
 
         return 0; // No path found to the target town
     }
+
+    public static void main(String[] args) {
+
+    }
 }

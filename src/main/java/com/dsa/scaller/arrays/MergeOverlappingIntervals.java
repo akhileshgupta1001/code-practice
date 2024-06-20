@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class MergeOverlappingIntervals {
+ class MergeOverlappingIntervals {
     public static ArrayList<Interval> merge(ArrayList<Interval> intervals) {
+        intervals.sort((a, b) -> Integer.compare(a.start, b.start));
         Collections.sort(intervals, new Comparator<Interval>() {
             public int compare(Interval a, Interval b) {
                 return Integer.compare(a.start, b.start);

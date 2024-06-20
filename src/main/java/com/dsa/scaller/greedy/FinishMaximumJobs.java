@@ -1,5 +1,6 @@
 package com.dsa.scaller.greedy;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -96,10 +97,12 @@ public class FinishMaximumJobs {
             }
         }
 
+
         return ans;
     }
 
     public static void main(String[] args) {
         System.out.println(solve(new int[]{1, 5, 7, 1}, new int[]{7, 8, 8, 8}));
+        //[1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,1]
     }
 }

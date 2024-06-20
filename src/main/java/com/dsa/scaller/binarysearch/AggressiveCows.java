@@ -79,7 +79,6 @@ public class AggressiveCows {
 
     // Main function to find the maximum minimum distance for 'k' cows in the stalls.
     public int aggressiveCows(List<Integer> stalls, int k) {
-        Map<Integer,Integer> map = new HashMap<>();
 
         Collections.sort(stalls); // Sort the stalls in ascending order.
         int s = 0; // Initialize the lower bound of the search range.

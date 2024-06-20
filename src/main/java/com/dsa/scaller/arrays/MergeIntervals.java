@@ -1,6 +1,7 @@
 package com.dsa.scaller.arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -56,6 +57,8 @@ public class MergeIntervals {
     //(2,6) completely merges the given intervals
     public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
      intervals.add(newInterval);
+
+
         Collections.sort(intervals,new Comparator<Interval>() {
         public int compare(Interval a, Interval b) {
             return Integer.compare(a.start, b.start);

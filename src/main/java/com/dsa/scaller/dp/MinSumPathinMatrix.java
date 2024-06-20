@@ -64,40 +64,24 @@ public class MinSumPathinMatrix {
     // The path will be: 1 -> -3 -> 5 -> -5 -> 1.
 
 
-    private int minPathSumRecursive(int[][] grid, int row, int col, int[][] memo) {
-        // Base case: If we are at the top-left cell, return its value
-        if (row == 0 && col == 0) {
-            return grid[0][0];
+    public int minPathSum(int[][] grid,int i, int j , int[][] dp) {
+        if(i<0 || j<0){
+            return Integer.MAX_VALUE;
         }
 
-        // If the result for this cell is already computed, return it
-        if (memo[row][col] != -1) {
-            return memo[row][col];
+        if(i==0  && j==0){
+            dp[i][j]= grid[i][j];
         }
 
-        int minPathSum;
-
-        // Compute the minimum path sum recursively by considering two options:
-        // 1. Moving from the cell above
-        // 2. Moving from the cell on the left
-        if (row == 0) {
-            // If we are in the top row, we can only move left
-            minPathSum = grid[row][col] + minPathSumRecursive(grid, row, col - 1, memo);
-        } else if (col == 0) {
-            // If we are in the leftmost column, we can only move up
-            minPathSum = grid[row][col] + minPathSumRecursive(grid, row - 1, col, memo);
-        } else {
-            // Choose the minimum of the two options
-            int fromAbove = minPathSumRecursive(grid, row - 1, col, memo);
-            int fromLeft = minPathSumRecursive(grid, row, col - 1, memo);
-            minPathSum = grid[row][col] + Math.min(fromAbove, fromLeft);
+        if(dp[i][j] != Integer.MAX_VALUE){
+            return dp[i][j];
         }
+        dp[i][j] = Math.min(minPathSum(grid,i-1,j,dp)
+                ,minPathSum(grid,i,j-1,dp))+grid[i][j];
 
-        // Store the computed result in the memo table
-        memo[row][col] = minPathSum;
-
-        return minPathSum;
+        return dp[i][j];
     }
+
     public int minPathSum2(int[][] A) {
         // Get the number of rows in the grid
         int n = A.length;
@@ -146,7 +130,7 @@ public class MinSumPathinMatrix {
             Arrays.fill(dp[i], -1);
         }
 
-        return minPathSumRecursive(A,n-1,m-1,dp);
+        return minPathSum(A,n-1,m-1,dp);
     }
 
 

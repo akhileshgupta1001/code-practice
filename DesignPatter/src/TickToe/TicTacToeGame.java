@@ -1,6 +1,7 @@
-import javafx.util.Pair;
-import model.Board;
-import model.Player;
+package TickToe;
+
+import com.machine.coding.tictactoe.model.Board;
+import com.machine.coding.tictactoe.model.Player;
 import model.PlayingPiece;
 import model.PlayingPieceO;
 import model.PlayingPieceX;
@@ -12,7 +13,8 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
     Deque<Player> players;
-    Board gameBoard;
+    Board
+            gameBoard;
 
     public void initializeGame(){
 
