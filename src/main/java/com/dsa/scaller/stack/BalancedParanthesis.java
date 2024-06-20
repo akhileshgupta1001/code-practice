@@ -60,6 +60,7 @@ public class BalancedParanthesis {
 
 
     public int solve(String A) {
+        //{([])}
         int len = A.length();
         if (len % 2 != 0) return 0;
         Map<Character, Character> map = new HashMap<>();

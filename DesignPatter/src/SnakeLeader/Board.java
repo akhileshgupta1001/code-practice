@@ -1,3 +1,4 @@
+import com.machine.coding.tictactoe.model.Cell;
 import javafx.util.Pair;
 
 import java.util.List;

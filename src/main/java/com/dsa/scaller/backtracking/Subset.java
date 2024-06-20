@@ -1,6 +1,7 @@
 package com.dsa.scaller.backtracking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Subset {
@@ -71,7 +72,9 @@ public class Subset {
     ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
 
     public void subsets(ArrayList<Integer> A, ArrayList<Integer> subAns, int index) {
-
+        ArrayList<Integer> sum = new ArrayList<>() ;
+        // subAns.addAll(subAns);
+        sum.addAll(subAns);
         if (index == A.size()) {
             ans.add(new ArrayList<>(subAns));
             return;
@@ -99,6 +102,22 @@ public class Subset {
             return x.size() - y.size();
         });
         return ans;
+    }
+
+    public static void main(String[] args) {
+        Subset subset = new Subset();
+
+        // Example Input
+        ArrayList<Integer> A = new ArrayList<>();
+        A.add(1);
+        A.add(2);
+        A.add(3);
+
+        // Generate subsets
+        ArrayList<ArrayList<Integer>> result = subset.subsets(A);
+
+        // Print the result
+        System.out.println(result);
     }
 
 }

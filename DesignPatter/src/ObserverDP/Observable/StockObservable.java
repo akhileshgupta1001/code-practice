@@ -1,4 +1,4 @@
-package Observable;
+package ObserverDP.Observable;
 
 import Observer.NotificationAlertObserver;
 

@@ -49,6 +49,11 @@ public class RainWaterTrapped {
     //
     //No water is trapped.
 
+    // lmax []
+    // rmax[]
+    // ans = Min()-Height[i];
+
+
     public int trap(final List<Integer> A) {
         int[] rightMax = new int[A.size()];
         int n = A.size();

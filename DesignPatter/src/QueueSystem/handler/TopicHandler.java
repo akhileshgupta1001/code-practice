@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class TopicHandler {
     private final Topic topic;
-    private final Map<String, SubscriberWorker> subscriberWorkers;
+    private final Map<String, QueueSystem.handler.SubscriberWorker> subscriberWorkers;
 
     public TopicHandler(@NonNull final Topic topic) {
         this.topic = topic;

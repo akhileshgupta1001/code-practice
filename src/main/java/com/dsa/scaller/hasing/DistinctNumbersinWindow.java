@@ -74,6 +74,8 @@ public class DistinctNumbersinWindow {
         int start = 1;
         int end = B;
 
+
+
         while (end < A.size()) {
             // Remove first index and add to next index;
             int data = A.get(start - 1);

@@ -1,6 +1,7 @@
-package model;
+package TickToe.model;
 
-import javafx.util.Pair;
+import jdk.internal.net.http.common.Pair;
+import model.PlayingPiece;
 
 import java.util.ArrayList;
 import java.util.List;

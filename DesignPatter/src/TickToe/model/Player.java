@@ -1,10 +1,13 @@
-package model;
+package TickToe.model;
+
+import model.PlayingPiece;
 
 public class Player {
     private String name;
-    private PlayingPiece playingPiece;
+    private model.PlayingPiece
+            playingPiece;
 
-    public Player(String name, PlayingPiece playingPiece) {
+    public Player(String name, model.PlayingPiece playingPiece) {
         this.name = name;
         this.playingPiece = playingPiece;
     }

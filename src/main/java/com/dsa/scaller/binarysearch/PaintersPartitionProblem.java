@@ -114,6 +114,7 @@ public class PaintersPartitionProblem {
 
             // If the current time allows all painters to paint the boards, return the time.
             if (count <= A && count1 < A) {
+                System.out.println(" Ans = "+ mid);
                 return mid;
             }
 
@@ -187,5 +188,10 @@ public class PaintersPartitionProblem {
 
     public int paint(int A, int B, ArrayList<Integer> C) {
         return paintSolve(A,B,C);
+    }
+
+    public static void main(String[] args) {
+        PaintersPartitionProblem paintersPartitionProblem = new PaintersPartitionProblem();
+        paintersPartitionProblem.paint(1,1000000,new int[]{1000000,100000});
     }
 }

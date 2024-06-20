@@ -1,6 +1,63 @@
 package multithreading;
 
 public class EvenOdd {
+    int count;
+    static int N;
+
+    public  void printEven(){
+        while(count<N) {
+            synchronized (this) {
+                if (count % 2 == 1) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                System.out.println("Thread name : " + Thread.currentThread().getName() + " , Number : " + count);
+                count++;
+                notify();
+            }
+        }
+    }
+    public  void printOdd(){
+        while(count<N){
+            synchronized (this){
+            if(count%2==0){
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            System.out.println("Thread name : "+Thread.currentThread().getName()+" , Number : "+count);
+            count++;
+            notify();
+        }}
+    }
+
+    public static void main(String[] args) {
+        N=20;
+        EvenOdd evenOdd= new EvenOdd();
+        Thread evenThread=
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        evenOdd.printEven();
+                    }
+                },"Even");
+        Thread oddThread=   new Thread(new Runnable() {
+            @Override
+            public void run() {
+                evenOdd.printOdd();
+            }
+        },"Odd");
+
+    evenThread.start();
+    oddThread.start();
+    }
+
+    /*
     int counter=1;
     static int  N;
 
@@ -58,4 +115,6 @@ public class EvenOdd {
         thread1.start();;
         thread2.start();
     }
+
+     */
 }

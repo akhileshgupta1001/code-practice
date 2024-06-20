@@ -2,6 +2,21 @@ package com.dsa.scaller.linkedlist;
 
 import java.util.*;
 
+class LRUCache{
+    class Node {
+        Node prev , next;
+        int key,value;
+        Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+            prev = null;
+            next = null;
+        }
+    }
+
+
+}
+
 public class LRU {
 
     //Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.

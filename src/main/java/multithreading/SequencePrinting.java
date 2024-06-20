@@ -3,7 +3,7 @@ package multithreading;
 public class SequencePrinting {
     static Object lock = new Object();
     static int counter = 1;
-    static int n = 2;
+    static int n = 5;
 
     public static void main(String[] args) {
         Thread[] threads = new Thread[n];

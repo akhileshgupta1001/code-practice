@@ -1,7 +1,6 @@
+package CompanyTes;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 interface CharCountService{
     public abstract void charCount(String str);

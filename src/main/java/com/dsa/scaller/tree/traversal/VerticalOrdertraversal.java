@@ -4,6 +4,7 @@ import com.dsa.scaller.tree.TreeNode;
 
 import java.util.*;
 
+
 class Pair {
     int dis;
     TreeNode node;
@@ -19,6 +20,19 @@ class Pair {
                 "dis=" + dis +
                 ", node=" + node +
                 '}';
+    }
+}
+
+class Touple{
+    VerticalOrdertraversal.Node
+            node;
+    int vertical;
+    int level;
+
+    Touple(VerticalOrdertraversal.Node node, int vertical, int level){
+        this.node=node;
+        this.vertical=vertical;
+        this.level=level;
     }
 }
 
@@ -94,6 +108,76 @@ public class VerticalOrdertraversal {
     //Provide sample input and click run to see the correct output for the provided input. Use this to improve your problem understanding and test edge cases
     //Arg 1: A Binary Tree, -1 signifies a NULL child, For e.g 6 9 4 -1 -1 8 -1 -1 3 -1 -1
     //tree-icon
+    class Node {
+        int val;
+        Node left;
+        Node right;
+
+        Node() {}
+
+        Node(int val) {
+            this.val = val;
+        }
+
+        Node(int val, Node left, Node right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    class Solution {
+        class Tuple {
+            TreeNode node;
+            int vertical;
+            int level;
+
+            Tuple(TreeNode node, int vertical, int level) {
+                this.node = node;
+                this.vertical = vertical;
+                this.level = level;
+            }
+        }
+
+        public List<List<Integer>> verticalTraversal(TreeNode root) {
+            TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap<>();
+            Queue<Tuple> queue = new LinkedList<>();
+            queue.add(new Tuple(root, 0, 0));
+
+            while (!queue.isEmpty()) {
+                Tuple tuple = queue.poll();
+                TreeNode node = tuple.node;
+                int vertical = tuple.vertical;
+                int level = tuple.level;
+
+                map.putIfAbsent(vertical, new TreeMap<>());
+                map.get(vertical).putIfAbsent(level, new PriorityQueue<>());
+                map.get(vertical).get(level).add(node.val);
+
+                if (node.left != null) {
+                    queue.add(new Tuple(node.left, vertical - 1, level + 1));
+                }
+
+                if (node.right != null) {
+                    queue.add(new Tuple(node.right, vertical + 1, level + 1));
+                }
+            }
+
+            List<List<Integer>> ans = new ArrayList<>();
+            for (Map.Entry<Integer, TreeMap<Integer, PriorityQueue<Integer>>> entry : map.entrySet()) {
+                List<Integer> verticalOrder = new ArrayList<>();
+                for (PriorityQueue<Integer> q : entry.getValue().values()) {
+                    while (!q.isEmpty()) {
+                        verticalOrder.add(q.poll());
+                    }
+                }
+                ans.add(verticalOrder);
+            }
+
+            return ans;
+        }
+
+    }
 
     public ArrayList<ArrayList<Integer>> verticalOrderTraversal(TreeNode A) {
         ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
