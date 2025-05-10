@@ -54,6 +54,39 @@ public class FindPeakElement {
     //
     // 100 is the peak.
 
+    public int findPeakElementSolve(int[] A) {
+
+
+        int n = A.length;
+        if(n==1){
+            return 0;
+        }
+        if(A[0]>A[1]){
+            return 0;
+        }
+        if(A[n-1]>A[n-2]){
+            return n-1;
+        }
+        if(n==2){
+            return A[0]>A[1]?0:1;
+        }
+        int low =1;
+        int high = A.length-2;
+        while(low<=high){
+            int mid = (low+high)/2;
+
+            if( (A[mid]>A[mid-1]  )
+                    && (A[mid]>A[mid+1]) ){
+                return mid;
+            }else if(A[mid]>A[mid-1]){
+                low = mid+1;
+            }else{
+                high = mid-1;
+            }
+        }
+        return -1;
+    }
+
     public static int solve(int[] A) {
         int low = 0;
         int n = A.length;

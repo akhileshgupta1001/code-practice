@@ -31,25 +31,23 @@ public class FirstMissingInteger {
     //
     //Example Input
     //Input 1:
-    //
     //[1, 2, 0]
+
     //Input 2:
-    //
     //[3, 4, -1, 1]
+
     //Input 3:
-    //
     //[-8, -7, -6]
     //
     //
     //Example Output
     //Output 1:
-    //
     //3
+
     //Output 2:
-    //
     //2
+
     //Output 3:
-    //
     //1
     //
     //
@@ -64,7 +62,8 @@ public class FirstMissingInteger {
         for (int i = 0; i < A.size(); i++) {
             if (A.get(i) > 0 && A.get(i) <= A.size()) {
                 int pos = A.get(i) - 1;
-                System.out.println("Current index = "+pos+" , i = "+i+" , Array : "+A);
+                System.out.println("Current index = "+pos+" , i = "+i+" " +
+                        ", Array : "+A+" , current element : "+A.get(i)+" , swap number "+A.get(pos));
 
                 if (A.get(i) != A.get(pos)) {
                     Collections.swap(A, pos, i);
@@ -84,7 +83,9 @@ public class FirstMissingInteger {
 
     public static void main(String[] args) {
         FirstMissingInteger firstMissingInteger = new FirstMissingInteger();
-        firstMissingInteger.firstMissingPositive(new ArrayList<>(Arrays.asList(-5,3,10,8,1,2,-3,2)));
+        firstMissingInteger.firstMissingPositive(new ArrayList<>(Arrays.asList(3, 4, -1, 1)));
+
+        //firstMissingInteger.firstMissingPositive(new ArrayList<>(Arrays.asList(-5,3,10,8,1,2,-3,2)));
     }
 
 }

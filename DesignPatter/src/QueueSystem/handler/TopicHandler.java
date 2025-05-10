@@ -1,3 +1,4 @@
+/*
 package QueueSystem.handler;
 
 import QueueSystem.model.Topic;
@@ -33,3 +34,4 @@ public class TopicHandler {
         subscriberWorker.wakeUpIfNeeded();
     }
 }
+*/

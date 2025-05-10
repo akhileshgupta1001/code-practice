@@ -5,6 +5,7 @@ import java.util.Map;
 
 //https://leetcode.com/problems/longest-repeating-character-replacement/
 public class LongestRepeatingCharacterReplacement {
+
     public static int characterReplacement(String s, int k) {
         int ans = 0;
 
