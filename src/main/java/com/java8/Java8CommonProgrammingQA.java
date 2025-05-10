@@ -50,6 +50,7 @@ public class Java8CommonProgrammingQA {
                 .flatMap(student -> student.getContacts().stream())
                 .distinct()
                 .collect(Collectors.toList());
+
         System.out.println(contacts);
         //one2one-> map
         //one2many-> flatmap
