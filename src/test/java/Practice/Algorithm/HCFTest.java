@@ -1,8 +1,5 @@
 package Practice.Algorithm;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
 
 class HCFTest {
 	static int a =10;

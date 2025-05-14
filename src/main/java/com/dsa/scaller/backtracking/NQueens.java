@@ -3,6 +3,8 @@ package com.dsa.scaller.backtracking;
 import java.util.ArrayList;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class NQueens {
     //Problem Description
@@ -137,5 +139,71 @@ public class NQueens {
             }
             System.out.println();
         }
+    }
+
+    public ArrayList<ArrayList<String>> solveNQueens2(int A) {
+        ArrayList<ArrayList<String>> solutions = new ArrayList<>();
+        int[][] matrix = new int[A][A];
+        placeQueens(
+                0, A, matrix,
+                new HashSet<>(),
+                new HashSet<>(),
+                new HashSet<>(),
+                solutions
+        );
+
+        // Sort in reverse lex order
+        solutions.sort((a, b) -> {
+            for (int i = 0; i < a.size(); i++) {
+                int cmp = b.get(i).compareTo(a.get(i));
+                if (cmp != 0) return cmp;
+            }
+            return 0;
+        });
+
+        return solutions;
+    }
+
+    private void placeQueens(int row, int size, int[][] matrix,
+                             Set<Integer> columns,
+                             Set<Integer> sumDiagonal,
+                             Set<Integer> diffDiagonal,
+                             ArrayList<ArrayList<String>> solutions) {
+
+        if (row == size) {
+            solutions.add(buildResult(matrix, size));
+            return;
+        }
+
+        for (int col = 0; col < size; col++) {
+            if (!columns.contains(col)
+                    && !sumDiagonal.contains(row + col)
+                    && !diffDiagonal.contains(row - col)) {
+
+                matrix[row][col] = 1;
+                columns.add(col);
+                sumDiagonal.add(row + col);
+                diffDiagonal.add(row - col);
+
+                placeQueens(row + 1, size, matrix, columns, sumDiagonal, diffDiagonal, solutions);
+
+                matrix[row][col] = 0;
+                columns.remove(col);
+                sumDiagonal.remove(row + col);
+                diffDiagonal.remove(row - col);
+            }
+        }
+    }
+
+    private ArrayList<String> buildResult(int[][] matrix, int size) {
+        ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < size; j++) {
+                sb.append(matrix[i][j] == 1 ? 'Q' : '.');
+            }
+            result.add(sb.toString());
+        }
+        return result;
     }
 }
