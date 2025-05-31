@@ -91,4 +91,21 @@ public class LIS {
 
         return maxLength;
     }
+
+    public int lis2(final int[] A) {
+        int ans = Integer.MIN_VALUE;
+        int n = A.length;
+        int[] lis = new int[n];
+
+        for(int i=0;i<n ;i++){
+            lis[i]=1;
+            for(int j=0;j<i;j++){
+                if(A[i]>A[j]){
+                    lis[i] = Math.max(lis[i],lis[j]+1);
+                }
+            }
+            ans = Math.max(ans , lis[i]);
+        }
+        return ans;
+    }
 }
